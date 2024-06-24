@@ -5,8 +5,14 @@ mod view;
 use crate::pages::client::{client, QueryBuilder};
 use data::Data;
 use leptos::*;
+use leptos_router::Params;
 use query::UnnamedQuery;
 use view::View;
+
+#[derive(Params, PartialEq)]
+struct ProductParams {
+    id: usize,
+}
 
 #[island]
 pub fn Product() -> impl IntoView {
