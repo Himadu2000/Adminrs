@@ -53,6 +53,6 @@ pub fn Home() -> impl IntoView {
     };
 
     view! {
-        <View data=data events=(add, sub) />
+        <View data=data events=(on_submit) />
     }
 }
