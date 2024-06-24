@@ -21,7 +21,7 @@ pub fn Login() -> impl IntoView {
     let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     //? Save the token if it's in the URL.
-    let response = create_local_resource(
+    let resource = create_local_resource(
         || (),
         move |_| async move {
             set_flag.set(String::from("DDDDDDDDDDDD"));
@@ -57,7 +57,7 @@ pub fn Login() -> impl IntoView {
     };
 
     let data = Data {
-        text: response,
+        text: resource,
         form,
     };
 
