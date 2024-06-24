@@ -1,8 +1,231 @@
+type Attribute {
+  name: String!
+  value: String!
+}
+
+input AttributeInput {
+  name: String!
+  value: String!
+}
+
+type Dimensions {
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
+input DimensionsInput {
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
+input Filter {
+  active: Boolean
+  discontinued: Boolean
+  search: String
+  onSale: Boolean
+  stockStatus: ProductFilterStockStatus!
+  priceFrom: Float
+  priceTo: Float
+  sku: String
+  sort: ProductFilterSort
+}
+
+type Image {
+  alt: String
+  position: Int!
+  file: String!
+}
+
+input ImageInput {
+  alt: String
+  position: Int!
+}
+
+type IntConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
+  edges: [IntEdge!]!
+  """
+  A list of nodes.
+  """
+  nodes: [Int!]!
+}
+
+"""
+An edge in a connection.
+"""
+type IntEdge {
+  """
+  The item at the end of the edge
+  """
+  node: Int!
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
 type Mutation {
   status: String!
+  login(email: String!): String!
+  createProduct(data: ProductInput!): [ProductRecord!]!
+  updateProduct(id: String!, data: ProductInput!): ProductRecord
+  deleteProduct(id: String!): ProductRecord
+  deleteImage(id: String!, index: Int!): ProductRecord
+}
+
+"""
+Information about pagination in a connection
+"""
+type PageInfo {
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+enum ProductFilterSort {
+  PRICE_MIN_TO_MAX
+  PRICE_MAX_TO_MIN
+  STOCK_HIGHEST
+  STOCK_LOWEST
+}
+
+enum ProductFilterStockStatus {
+  AVAILABLE
+}
+
+input ProductInput {
+  images: [ImageInput!]! = []
+  dimensions: DimensionsInput
+  name: String
+  description: String
+  metaDescription: String
+  metaTitle: String
+  tags: [String!]! = []
+  attributes: [AttributeInput!]! = []
+  enabled: Boolean! = false
+  discontinued: Boolean! = false
+  slug: String
+  sku: String
+  code: String
+  taxClass: String
+  prices: [Float!]! = []
+  costPrice: Float
+  regularPrice: Float! = 0.0
+  salePrice: Float
+  quantityInc: Int! = 0
+  quantityMin: Int! = 0
+  weight: Float
+  stockQuantity: Int! = 0
+  position: Int! = 0
+  stockTracking: Boolean! = false
+  stockPreorder: Boolean! = false
+  stockBackorder: Boolean! = false
+  options: [ProductOptionInput!]! = []
+  variants: [VariantInput!]! = []
+}
+
+type ProductOption {
+  name: String!
+  control: ProductOptionControl!
+  required: Boolean!
+  position: Int!
+  values: [Value!]!
+}
+
+enum ProductOptionControl {
+  SELECT
+}
+
+input ProductOptionInput {
+  name: String!
+  control: ProductOptionControl!
+  required: Boolean!
+  position: Int!
+  values: [ValueInput!]!
+}
+
+type ProductRecord {
+  images: [Image!]!
+  dimensions: Dimensions
+  name: String
+  description: String
+  metaDescription: String
+  metaTitle: String
+  tags: [String!]!
+  attributes: [Attribute!]!
+  enabled: Boolean!
+  discontinued: Boolean!
+  slug: String
+  sku: String
+  code: String
+  taxClass: String
+  prices: [Float!]!
+  costPrice: Float
+  regularPrice: Float!
+  salePrice: Float
+  quantityInc: Int!
+  quantityMin: Int!
+  weight: Float
+  stockQuantity: Int!
+  position: Int!
+  stockTracking: Boolean!
+  stockPreorder: Boolean!
+  stockBackorder: Boolean!
+  options: [ProductOption!]!
+  variants: [Variant!]!
+  dateStockExpected: String!
+  dateSaleFrom: String!
+  dateSaleTo: String!
+  id: String!
 }
 
 type Query {
   status: String!
+  getProduct(id: String!): ProductRecord
+  getProducts(after: String, before: String, first: Int, last: Int, filter: Filter): IntConnection!
+}
+
+type Value {
+  name: String!
+}
+
+input ValueInput {
+  name: String!
+}
+
+type Variant {
+  sku: String
+  price: Float!
+  stockQuantity: Int!
+  weight: Float
+  options: String!
+}
+
+input VariantInput {
+  sku: String
+  price: Float!
+  stockQuantity: Int!
+  weight: Float
 }
 
