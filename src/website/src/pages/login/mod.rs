@@ -28,19 +28,14 @@ pub fn Home() -> impl IntoView {
     let add = move |_| set_value.update(|value| *value += 1);
     let sub = move |_| set_value.update(|value| *value -= 1);
 
-    let data = Data {
-        value,
-        text: response,
-    };
-
-    let input_element: NodeRef<html::Input> = create_node_ref();
+    let form: NodeRef<html::Input> = create_node_ref();
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         // stop the page from reloading!
         ev.prevent_default();
 
         // here, we'll extract the value from the input
-        let value = input_element
+        let value = form
             .get()
             // event handlers can only fire after the view
             // is mounted to the DOM, so the `NodeRef` will be `Some`
@@ -50,6 +45,12 @@ pub fn Home() -> impl IntoView {
             // this means we can call`HtmlInputElement::value()`
             // to get the current value of the input
             .value();
+    };
+
+    let data = Data {
+        form,
+        value,
+        text: response,
     };
 
     view! {
