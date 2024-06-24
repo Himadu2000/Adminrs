@@ -5,7 +5,7 @@ mod view;
 use crate::pages::client::{client, QueryBuilder};
 use data::Data;
 use leptos::*;
-use leptos_router::Params;
+use leptos_router::{use_params, Params};
 use query::UnnamedQuery;
 use view::View;
 
