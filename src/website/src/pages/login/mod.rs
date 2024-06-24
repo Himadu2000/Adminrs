@@ -7,8 +7,8 @@ use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
-use leptos_use::{storage::use_session_storage, utils::FromToStringCodec};
-use query::MyMutation;
+use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
+use query::{MyMutation, Variables};
 use view::View;
 
 #[derive(Params, PartialEq)]
@@ -18,8 +18,7 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
-    let (value, set_value) = create_signal::<i8>(0);
-    let (flag, set_flag, remove_flag) = use_session_storage::<String, FromToStringCodec>("token");
+    let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     use_params::<LoginParams>().with(|params| {
         let token = params
@@ -28,43 +27,38 @@ pub fn Login() -> impl IntoView {
             .unwrap()
             .unwrap_or_default();
 
-        set_flag.set(token);
+        if token.len() > 10 {
+            set_flag.set(token);
+        };
     });
 
-    let response = create_resource(
-        || (),
-        |_| async move {
-            client::<MyMutation>(MyMutation::build(()))
+    // 03124701209@gmail.com
+    let login = create_action(move |email: &String| {
+        let email = email.to_owned();
+
+        async move {
+            let variables = Variables { email };
+
+            let token = client::<MyMutation>(MyMutation::build(variables))
                 .await
                 .unwrap()
-                .login
-        },
-    );
+                .login;
+
+            set_flag.set(token);
+        }
+    });
 
     let form: NodeRef<html::Input> = create_node_ref();
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
-        // stop the page from reloading!
         ev.prevent_default();
 
-        // here, we'll extract the value from the input
-        let value = form
-            .get()
-            // event handlers can only fire after the view
-            // is mounted to the DOM, so the `NodeRef` will be `Some`
-            .expect("<input> should be mounted")
-            // `leptos::HtmlElement<html::Input>` implements `Deref`
-            // to a `web_sys::HtmlInputElement`.
-            // this means we can call`HtmlInputElement::value()`
-            // to get the current value of the input
-            .value();
+        let value = form.get().expect("<input> should be mounted").value();
+
+        login.dispatch(value);
     };
 
-    let data = Data {
-        form,
-        value,
-        text: response,
-    };
+    let data = Data { form };
 
     view! {
         <View data=data events=(on_submit) form=form />
