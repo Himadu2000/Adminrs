@@ -20,6 +20,7 @@ struct LoginParams {
 pub fn Login() -> impl IntoView {
     let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
+    //? Save the token if it's in the URL.
     create_effect(move |_| {
         use_query::<LoginParams>().with(|params| {
             let token = params
