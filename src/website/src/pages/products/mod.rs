@@ -5,7 +5,7 @@ mod view;
 use crate::pages::client::{client, QueryBuilder};
 use data::Data;
 use leptos::*;
-use query::UnnamedQuery;
+use query::MyQuery;
 use view::View;
 
 #[island]
@@ -17,10 +17,15 @@ pub fn Products() -> impl IntoView {
     let response = create_resource(
         || (),
         |_| async move {
-            client::<UnnamedQuery>(UnnamedQuery::build(()))
+            client::<MyQuery>(MyQuery::build(()))
                 .await
                 .unwrap()
-                .status
+                .get_products
+                .edges
+                .first()
+                .unwrap()
+                .node
+                .to_string()
         },
     );
 
