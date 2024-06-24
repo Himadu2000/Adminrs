@@ -3247,6 +3247,7 @@ dependencies = [
  "cfg-if",
  "chrono",
  "leptos",
+ "leptos_meta",
  "wasm-bindgen",
  "web-sys",
 ]
