@@ -28,7 +28,7 @@ pub fn Login() -> impl IntoView {
             .unwrap_or_default();
 
         if token.len() > 10 {
-            set_flag.set(token);
+            set_flag.set(Some(token));
         };
     });
 
@@ -44,7 +44,7 @@ pub fn Login() -> impl IntoView {
                 .unwrap()
                 .login;
 
-            set_flag.set(token);
+            set_flag.set(Some(token));
         }
     });
 
