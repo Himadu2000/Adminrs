@@ -25,9 +25,6 @@ pub fn Login() -> impl IntoView {
         },
     );
 
-    let add = move |_| set_value.update(|value| *value += 1);
-    let sub = move |_| set_value.update(|value| *value -= 1);
-
     let form: NodeRef<html::Input> = create_node_ref();
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
