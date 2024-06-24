@@ -2,6 +2,7 @@ use cynic::{
     serde::{Deserialize, Serialize},
     GraphQlResponse, QueryFragment,
 };
+use leptos::SignalGet;
 use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
 use reqwest::Client;
 
@@ -16,7 +17,7 @@ where
     Client::new()
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
-        .header("Authorization", flag)
+        .header("Authorization", flag.get())
         .send()
         .await
         .unwrap()
