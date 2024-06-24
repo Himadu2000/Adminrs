@@ -10,9 +10,12 @@ pub async fn client<UnnamedQuery>(operation: impl Serialize) -> Option<UnnamedQu
 where
     UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
 {
+    let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
+
     Client::new()
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
+        .header("Authorization", flag)
         .send()
         .await
         .unwrap()
