@@ -18,7 +18,7 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
-    let query = use_query::<LoginParams>();
+    // let query = use_query::<LoginParams>();
     let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     //? Save the token if it's in the URL.
