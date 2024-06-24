@@ -18,6 +18,7 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
+    // Not working because use_context::<RouterContext>() is None.
     // let query = use_query::<LoginParams>();
     let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
