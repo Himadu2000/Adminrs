@@ -9,7 +9,7 @@ use query::UnnamedQuery;
 use view::View;
 
 #[island]
-pub fn Home() -> impl IntoView {
+pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
 
     // thanks to https://tailwindcomponents.com/component/blue-buttons-example for the showcase layout
