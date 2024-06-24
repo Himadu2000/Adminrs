@@ -64,6 +64,6 @@ pub fn Login() -> impl IntoView {
     };
 
     view! {
-        <View data=data events=(on_submit) />
+        <View data=data events=(on_submit) form=form />
     }
 }
