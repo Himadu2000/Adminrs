@@ -7,7 +7,7 @@ use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
-use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
+use leptos_use::{use_cookie, utils::FromToStringCodec};
 use query::{MyMutation, Variables};
 use view::View;
 
