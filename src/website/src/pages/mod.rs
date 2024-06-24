@@ -29,6 +29,7 @@ pub fn App() -> impl IntoView {
                 <Route path="/login" view=  move || view! { <Login/> }/>
                 <Route path="/product/:id" view=  move || view! { <Product/> }/>
                 <Route path="/products" view=  move || view! { <Products/> }/>
+                <Route path="/*any" view=|| view! { <h1>"Not Found"</h1> }/>
             </Routes>
         </Router>
     }
