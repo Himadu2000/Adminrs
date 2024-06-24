@@ -18,15 +18,16 @@ struct LoginParams {
 #[island]
 pub fn Login() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
+    let (flag, set_flag, remove_flag) = use_session_storage::<String, FromToStringCodec>("token");
 
-    let token = move || {
-        use_params::<LoginParams>().with(|params| {
-            params
-                .as_ref()
-                .map(|params| params.token.clone())
-                .unwrap_or_default()
-        })
-    };
+    use_params::<LoginParams>().with(|params| {
+        let token = params
+            .as_ref()
+            .map(|params| params.token.clone())
+            .unwrap_or_default();
+
+        set_flag(token);
+    });
 
     let response = create_resource(
         || (),
