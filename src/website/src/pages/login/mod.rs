@@ -7,7 +7,7 @@ use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
 use leptos_router::{use_query, Params};
-use leptos_use::{use_cookie_with_options, utils::FromToStringCodec, UseCookieOptions};
+use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
 use query::{MyMutation, Variables};
 use view::View;
 
@@ -18,10 +18,7 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
-    let (flag, set_flag) = use_cookie_with_options::<String, FromToStringCodec>(
-        "token",
-        UseCookieOptions::default().max_age(3600_000),
-    );
+    let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     use_query::<LoginParams>().with(|params| {
         let token = params
@@ -31,7 +28,7 @@ pub fn Login() -> impl IntoView {
             .unwrap_or_default();
 
         if token.len() > 10 {
-            set_flag.set(Some(token));
+            set_flag.set(token);
         };
     });
 
@@ -47,7 +44,7 @@ pub fn Login() -> impl IntoView {
                 .unwrap()
                 .login;
 
-            set_flag.set(Some(token));
+            set_flag.set(token);
         }
     });
 
