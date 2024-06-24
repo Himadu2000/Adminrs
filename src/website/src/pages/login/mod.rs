@@ -6,7 +6,7 @@ use crate::pages::client::client;
 use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
-use leptos_router::{use_params, Params};
+use leptos_router::{use_query, Params};
 use leptos_use::{use_cookie_with_options, utils::FromToStringCodec, UseCookieOptions};
 use query::{MyMutation, Variables};
 use view::View;
@@ -23,7 +23,7 @@ pub fn Login() -> impl IntoView {
         UseCookieOptions::default().max_age(3600_000),
     );
 
-    use_params::<LoginParams>().with(|params| {
+    use_query::<LoginParams>().with(|params| {
         let token = params
             .as_ref()
             .map(|params| params.token.clone())
