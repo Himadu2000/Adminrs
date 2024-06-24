@@ -7,6 +7,7 @@ use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
+use leptos_use::{storage::use_session_storage, utils::FromToStringCodec};
 use query::MyMutation;
 use view::View;
 
@@ -24,9 +25,10 @@ pub fn Login() -> impl IntoView {
         let token = params
             .as_ref()
             .map(|params| params.token.clone())
+            .unwrap()
             .unwrap_or_default();
 
-        set_flag(token);
+        set_flag.set(token);
     });
 
     let response = create_resource(
