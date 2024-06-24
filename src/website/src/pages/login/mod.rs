@@ -18,15 +18,23 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
+    let query = use_query::<LoginParams>();
     let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     //? Save the token if it's in the URL.
     let resource = create_local_resource(
         || (),
         move |_| async move {
-            set_flag.set(String::from("DDDDDDDDDDDD"));
+            let token = params.with(|params| {
+                query
+                    .as_ref()
+                    .map(|params| params.token.clone())
+                    .unwrap_or_default()
+            });
 
-            String::from("casfsaf")
+            set_flag.set(token);
+
+            token
         },
     );
 
