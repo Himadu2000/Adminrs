@@ -18,22 +18,17 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
-    let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
+    let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     //? Save the token if it's in the URL.
-    create_effect(move |_| {
-        use_query::<LoginParams>().with(|params| {
-            let token = params
-                .as_ref()
-                .map(|params| params.token.clone())
-                .unwrap()
-                .unwrap_or_default();
+    let response = create_local_resource(
+        || (),
+        move |_| async move {
+            set_flag.set(String::from("DDDDDDDDDDDD"));
 
-            if token.len() > 10 {
-                set_flag.set(token);
-            };
-        });
-    });
+            String::from("casfsaf")
+        },
+    );
 
     // 03124701209@gmail.com
     let login = create_action(move |email: &String| {
@@ -61,7 +56,10 @@ pub fn Login() -> impl IntoView {
         login.dispatch(value);
     };
 
-    let data = Data { form };
+    let data = Data {
+        text: response,
+        form,
+    };
 
     view! {
         <View data=data events=(on_submit) form=form />
