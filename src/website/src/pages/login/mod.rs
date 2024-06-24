@@ -18,7 +18,7 @@ struct LoginParams {
 
 #[island]
 pub fn Login() -> impl IntoView {
-    let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
+    let (flag, set_flag) = use_cookie::<String, FromToStringCodec>("token");
 
     use_params::<LoginParams>().with(|params| {
         let token = params
