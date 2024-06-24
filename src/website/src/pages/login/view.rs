@@ -1,12 +1,16 @@
 use super::data::Data;
-use leptos::{ev::MouseEvent, *};
+use leptos::{
+    ev::{MouseEvent, SubmitEvent},
+    *,
+};
 use leptos_meta::*;
 
 #[component]
-pub fn View<E1, E2>(data: Data, events: (E1, E2)) -> impl IntoView
+pub fn View<E1, E2, E3>(data: Data, events: (E1, E2, E3)) -> impl IntoView
 where
     E1: Fn(MouseEvent) + 'static,
     E2: Fn(MouseEvent) + 'static,
+    E3: Fn(SubmitEvent),
 {
     view! {
         <Title text="Home"/>
