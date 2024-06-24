@@ -2,10 +2,11 @@ mod data;
 mod query;
 mod view;
 
-use crate::pages::client::{client, QueryBuilder};
+use crate::pages::client::client;
+use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
-use query::UnnamedQuery;
+use query::MyMutation;
 use view::View;
 
 #[island]
@@ -17,10 +18,10 @@ pub fn Home() -> impl IntoView {
     let response = create_resource(
         || (),
         |_| async move {
-            client::<UnnamedQuery>(UnnamedQuery::build(()))
+            client::<MyMutation>(MyMutation::build(()))
                 .await
                 .unwrap()
-                .status
+                .login
         },
     );
 
@@ -30,6 +31,25 @@ pub fn Home() -> impl IntoView {
     let data = Data {
         value,
         text: response,
+    };
+
+    let input_element: NodeRef<html::Input> = create_node_ref();
+
+    let on_submit = move |ev: leptos::ev::SubmitEvent| {
+        // stop the page from reloading!
+        ev.prevent_default();
+
+        // here, we'll extract the value from the input
+        let value = input_element
+            .get()
+            // event handlers can only fire after the view
+            // is mounted to the DOM, so the `NodeRef` will be `Some`
+            .expect("<input> should be mounted")
+            // `leptos::HtmlElement<html::Input>` implements `Deref`
+            // to a `web_sys::HtmlInputElement`.
+            // this means we can call`HtmlInputElement::value()`
+            // to get the current value of the input
+            .value();
     };
 
     view! {
