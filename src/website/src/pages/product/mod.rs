@@ -29,7 +29,9 @@ pub fn Product() -> impl IntoView {
             client::<UnnamedQuery>(UnnamedQuery::build(()))
                 .await
                 .unwrap()
-                .status
+                .get_product
+                .unwrap()
+                .id
         },
     );
 
