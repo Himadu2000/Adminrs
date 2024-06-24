@@ -8,9 +8,9 @@ use home::Home;
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-use login::Home;
-use product::Home;
-use products::Home;
+use login::Login;
+use product::Product;
+use products::Products;
 
 // Pull in the schema we registered in build.rs
 #[cynic::schema("schema")]
