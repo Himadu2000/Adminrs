@@ -25,14 +25,15 @@ pub fn Login() -> impl IntoView {
     let resource = create_local_resource(
         || (),
         move |_| async move {
-            let token = params.with(|params| {
-                query
+            let token = query.with(|params| {
+                params
                     .as_ref()
                     .map(|params| params.token.clone())
+                    .unwrap()
                     .unwrap_or_default()
             });
 
-            set_flag.set(token);
+            set_flag.set(token.clone());
 
             token
         },
