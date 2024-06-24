@@ -19,8 +19,12 @@ pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
 
     let id = move || {
-        use_params::<ProductParams>()
-            .with(|params| params.as_ref().map(|params| params.id).unwrap_or_default())
+        use_params::<ProductParams>().with(|params| {
+            params
+                .as_ref()
+                .map(|params| params.id.clone())
+                .unwrap_or_default()
+        })
     };
 
     let response = create_resource(
