@@ -6,14 +6,27 @@ use crate::pages::client::client;
 use cynic::MutationBuilder;
 use data::Data;
 use leptos::*;
+use leptos_router::{use_params, Params};
 use query::MyMutation;
 use view::View;
+
+#[derive(Params, PartialEq)]
+struct LoginParams {
+    token: Option<String>,
+}
 
 #[island]
 pub fn Login() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
 
-    // thanks to https://tailwindcomponents.com/component/blue-buttons-example for the showcase layout
+    let token = move || {
+        use_params::<LoginParams>().with(|params| {
+            params
+                .as_ref()
+                .map(|params| params.token.clone())
+                .unwrap_or_default()
+        })
+    };
 
     let response = create_resource(
         || (),
