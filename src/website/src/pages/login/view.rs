@@ -17,23 +17,10 @@ where
         <main>
             <div class="bg-gradient-to-tl from-blue-800 to-blue-500 text-white font-mono flex flex-col min-h-screen">
                 <div class="flex flex-row-reverse flex-wrap m-auto">
-                    <button on:click=events.0 class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
-                        "+"
-                    </button>
-                    <input class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white">
-                        {data.value}
-                    </input>
-                    <button on:click=events.1 class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
-                        "-"
-                    </button>
-                    <Suspense
-        fallback=move || view! { <p>"Loading..."</p> }
-    >
-        {move || {
-            data.text.get()
-                .map(|text| view! { <p>{text}</p> })
-        }}
-    </Suspense>
+                <form on:submit=events.3>
+                <input type="text" node_ref=input_element class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <input type="submit" value="Log In" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white"/>
+            </form>
                 </div>
             </div>
         </main>
