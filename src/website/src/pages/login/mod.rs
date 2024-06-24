@@ -20,16 +20,18 @@ struct LoginParams {
 pub fn Login() -> impl IntoView {
     let (flag, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
-    use_query::<LoginParams>().with(|params| {
-        let token = params
-            .as_ref()
-            .map(|params| params.token.clone())
-            .unwrap()
-            .unwrap_or_default();
+    create_effect(move |_| {
+        use_query::<LoginParams>().with(|params| {
+            let token = params
+                .as_ref()
+                .map(|params| params.token.clone())
+                .unwrap()
+                .unwrap_or_default();
 
-        if token.len() > 10 {
-            set_flag.set(token);
-        };
+            if token.len() > 10 {
+                set_flag.set(token);
+            };
+        });
     });
 
     // 03124701209@gmail.com
