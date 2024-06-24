@@ -34,7 +34,7 @@ reqwest = "0.12.5"
 leptos_icons = "0.3.1"
 leptonic = "0.5.0"
 leptos-struct-table = "0.10.2"
-thaw = { version = "0.3.2", features = ["hydrate"] }
+thaw = "0.3.2"
 leptos-use = "0.10.10"
 
 [features]
@@ -48,6 +48,8 @@ ssr = [
     "leptos/ssr",
     "leptos_meta/ssr",
     "leptos_router/ssr",
+    "thaw/ssr",
+    "leptos-use/ssr",
     "dep:tracing",
 ]
 
