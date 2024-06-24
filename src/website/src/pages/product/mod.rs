@@ -11,7 +11,7 @@ use view::View;
 
 #[derive(Params, PartialEq)]
 struct ProductParams {
-    id: usize,
+    id: String,
 }
 
 #[island]
