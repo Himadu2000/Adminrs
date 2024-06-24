@@ -1,6 +1,7 @@
 use crate::pages::schema;
 use cynic::QueryFragment;
 
+// Create
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation")]
 pub struct MyMutation {
