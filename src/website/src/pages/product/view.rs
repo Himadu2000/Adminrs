@@ -8,7 +8,7 @@ use leptos_meta::*;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
-pub fn View<E1, E2, E3, E4, E5>(data: Data, events: (E1, E2, E3, E4)) -> impl IntoView
+pub fn View<E1, E2, E3, E4, E5>(data: Data, events: (E1, E2, E3, E4, E5)) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
     E2: Fn(FileList) + 'static,
