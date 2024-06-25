@@ -1,4 +1,5 @@
 pub mod crud;
+pub mod input;
 
 use crate::pages::schema;
 use cynic::QueryFragment;
