@@ -1,3 +1,5 @@
+pub mod crud;
+
 use crate::pages::schema;
 use cynic::QueryFragment;
 
