@@ -10,22 +10,22 @@ pub struct UnnamedQuery {
 
 #[derive(cynic::InputObject, cynic::QueryVariables, Debug)]
 pub struct ProductRecord {
-    pub attributes: Vec<Attribute>,
+    pub attributes: Vec<AttributeInput>,
     pub code: Option<String>,
     pub cost_price: Option<f64>,
     pub date_sale_from: String,
     pub date_sale_to: String,
     pub date_stock_expected: String,
     pub description: Option<String>,
-    pub dimensions: Option<Dimensions>,
+    pub dimensions: Option<DimensionsInput>,
     pub discontinued: bool,
     pub enabled: bool,
     pub id: String,
-    pub images: Vec<Image>,
+    pub images: Vec<ImageInput>,
     pub meta_description: Option<String>,
     pub meta_title: Option<String>,
     pub name: Option<String>,
-    pub options: Vec<ProductOption>,
+    pub options: Vec<ProductOptionInput>,
     pub position: i32,
     pub prices: Vec<f64>,
     pub quantity_inc: i32,
@@ -40,13 +40,12 @@ pub struct ProductRecord {
     pub stock_tracking: bool,
     pub tags: Vec<String>,
     pub tax_class: Option<String>,
-    pub variants: Vec<Variant>,
+    pub variants: Vec<VariantInput>,
     pub weight: Option<f64>,
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct Variant {
-    pub options: String,
+pub struct VariantInput {
     pub price: f64,
     pub sku: Option<String>,
     pub stock_quantity: i32,
@@ -54,35 +53,34 @@ pub struct Variant {
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct ProductOption {
+pub struct ProductOptionInput {
     pub control: ProductOptionControl,
     pub name: String,
     pub position: i32,
     pub required: bool,
-    pub values: Vec<Value>,
+    pub values: Vec<ValueInput>,
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct Value {
+pub struct ValueInput {
     pub name: String,
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct Image {
+pub struct ImageInput {
     pub alt: Option<String>,
-    pub file: String,
     pub position: i32,
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct Dimensions {
+pub struct DimensionsInput {
     pub height: f64,
     pub length: f64,
     pub width: f64,
 }
 
 #[derive(cynic::InputObject, Debug)]
-pub struct Attribute {
+pub struct AttributeInput {
     pub name: String,
     pub value: String,
 }
