@@ -64,8 +64,6 @@ pub fn Product() -> impl IntoView {
                 .update_product
                 .unwrap()
                 .id;
-
-            set_flag.set(token);
         }
     });
 
