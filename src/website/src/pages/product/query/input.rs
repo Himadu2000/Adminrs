@@ -8,7 +8,7 @@ pub struct UnnamedQuery {
     pub get_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::InputObject, cynic::QueryVariables, Debug)]
+#[derive(cynic::QueryVariables, Debug)]
 pub struct ProductInput {
     pub attributes: Vec<AttributeInput>,
     pub code: Option<String>,
