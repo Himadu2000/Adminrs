@@ -4,6 +4,11 @@ pub mod input;
 use crate::pages::schema;
 use cynic::QueryFragment;
 
+#[derive(cynic::QueryVariables)]
+pub struct Variables {
+    pub data: ProductInput,
+}
+
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Query")]
 pub struct UnnamedQuery {
