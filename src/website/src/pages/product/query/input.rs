@@ -1,6 +1,6 @@
 use crate::pages::schema;
 
-#[derive(cynic::QueryVariables, Debug)]
+#[derive(cynic::InputObject, Debug)]
 pub struct ProductInput {
     pub attributes: Vec<AttributeInput>,
     pub code: Option<String>,
