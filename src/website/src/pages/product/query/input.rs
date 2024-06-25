@@ -3,14 +3,14 @@ pub mod crud;
 use crate::pages::schema;
 use cynic::QueryFragment;
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 #[cynic(graphql_type = "Query")]
 pub struct UnnamedQuery {
     #[arguments(id: "")]
     pub get_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, cynic::QueryVariables, Debug)]
+#[derive(#[derive(cynic::InputObject, cynic::QueryVariables, Debug)]
 pub struct ProductRecord {
     pub attributes: Vec<Attribute>,
     pub code: Option<String>,
@@ -46,7 +46,7 @@ pub struct ProductRecord {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct Variant {
     pub options: String,
     pub price: f64,
@@ -55,7 +55,7 @@ pub struct Variant {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct ProductOption {
     pub control: ProductOptionControl,
     pub name: String,
@@ -64,26 +64,26 @@ pub struct ProductOption {
     pub values: Vec<Value>,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct Value {
     pub name: String,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct Image {
     pub alt: Option<String>,
     pub file: String,
     pub position: i32,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct Dimensions {
     pub height: f64,
     pub length: f64,
     pub width: f64,
 }
 
-#[derive(cynic::QueryFragment, cynic::InputObject, Debug)]
+#[derive(#[derive(cynic::InputObject, Debug)]
 pub struct Attribute {
     pub name: String,
     pub value: String,
