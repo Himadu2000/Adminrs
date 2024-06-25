@@ -32,7 +32,7 @@ pub struct ProductInput {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct VariantInput {
     pub price: f64,
     pub sku: Option<String>,
@@ -40,7 +40,7 @@ pub struct VariantInput {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct ProductOptionInput {
     pub control: ProductOptionControl,
     pub name: String,
@@ -49,25 +49,25 @@ pub struct ProductOptionInput {
     pub values: Vec<ValueInput>,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct ValueInput {
     pub name: String,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct ImageInput {
     pub alt: Option<String>,
     pub position: i32,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct DimensionsInput {
     pub height: f64,
     pub length: f64,
     pub width: f64,
 }
 
-#[derive(cynic::InputObject, Debug)]
+#[derive(Clone, cynic::InputObject, Debug)]
 pub struct AttributeInput {
     pub name: String,
     pub value: String,
