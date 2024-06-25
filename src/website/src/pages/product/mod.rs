@@ -95,7 +95,7 @@ pub fn Product() -> impl IntoView {
                 data: product,
             };
 
-            let token = client::<UpdateProduct>(UpdateProduct::build(variables))
+            let token = client::<DeleteProduct>(DeleteProduct::build(variables))
                 .await
                 .unwrap()
                 .update_product
