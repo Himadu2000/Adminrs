@@ -20,8 +20,14 @@ pub struct ProductRecord {
 }
 
 // Update
+#[derive(cynic::QueryVariables)]
+pub struct UpdateProductVariables {
+    id: String,
+    pub data: ProductInput,
+}
+
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation", variables = "ProductInput")]
+#[cynic(graphql_type = "Mutation", variables = "UpdateProductVariables")]
 pub struct UpdateProduct {
     #[arguments(data: {  }, id: "")]
     pub update_product: Option<ProductRecord>,
