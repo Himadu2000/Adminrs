@@ -22,7 +22,7 @@ pub struct ProductRecord {
 // Update
 #[derive(cynic::QueryVariables)]
 pub struct UpdateProductVariables {
-    id: String,
+    pub id: String,
     pub data: ProductInput,
 }
 
