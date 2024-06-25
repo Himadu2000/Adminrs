@@ -6,7 +6,7 @@ use cynic::QueryFragment;
 
 #[derive(cynic::QueryVariables)]
 pub struct Variables {
-    pub data: ProductInput,
+    pub id: String,
 }
 
 #[derive(cynic::QueryFragment, Debug)]
