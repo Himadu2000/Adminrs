@@ -74,11 +74,12 @@ type IntEdge {
 
 type Mutation {
   status: String!
+  license: String!
   login(email: String!): String!
+  createStore(data: StoreInput!): [StoreRecord!]!
   createProduct(data: ProductInput!): [ProductRecord!]!
   updateProduct(id: String!, data: ProductInput!): ProductRecord
-  deleteProduct(id: String!): ProductRecord
-  deleteImage(id: String!, index: Int!): ProductRecord
+  deleteProduct(id: String!, deleteImageIndex: Int): ProductRecord
 }
 
 """
@@ -101,6 +102,44 @@ type PageInfo {
   When paginating forwards, the cursor to continue.
   """
   endCursor: String
+}
+
+type Product {
+  images: [Image!]!
+  dimensions: Dimensions
+  name: String
+  description: String
+  metaDescription: String
+  metaTitle: String
+  tags: [String!]!
+  attributes: [Attribute!]!
+  enabled: Boolean!
+  discontinued: Boolean!
+  slug: String
+  sku: String
+  code: String
+  taxClass: String
+  prices: [Float!]!
+  costPrice: Float
+  regularPrice: Float!
+  salePrice: Float
+  quantityInc: Int!
+  quantityMin: Int!
+  weight: Float
+  stockQuantity: Int!
+  position: Int!
+  stockTracking: Boolean!
+  stockPreorder: Boolean!
+  stockBackorder: Boolean!
+  options: [ProductOption!]!
+  variants: [Variant!]!
+  dateStockExpected: String!
+  dateSaleFrom: String!
+  dateSaleTo: String!
+}
+
+type ProductDbRecord {
+  product: Product!
 }
 
 enum ProductFilterSort {
@@ -202,8 +241,20 @@ type ProductRecord {
 
 type Query {
   status: String!
-  getProduct(id: String!): ProductRecord
+  license: String!
+  stores: String!
+  getProduct(id: String!): ProductDbRecord!
   getProducts(after: String, before: String, first: Int, last: Int, filter: Filter): IntConnection!
+}
+
+input StoreInput {
+  name: String! = "Untitled"
+}
+
+type StoreRecord {
+  name: String!
+  users: String!
+  id: String!
 }
 
 type Value {
