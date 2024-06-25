@@ -68,6 +68,42 @@ pub fn Product() -> impl IntoView {
         }
     });
 
+    let update = create_action(move |product: &ProductInput| {
+        let product = product.to_owned();
+
+        async move {
+            let variables = UpdateProductVariables {
+                id: String::new(),
+                data: product,
+            };
+
+            let token = client::<UpdateProduct>(UpdateProduct::build(variables))
+                .await
+                .unwrap()
+                .update_product
+                .unwrap()
+                .id;
+        }
+    });
+
+    let update = create_action(move |product: &ProductInput| {
+        let product = product.to_owned();
+
+        async move {
+            let variables = UpdateProductVariables {
+                id: String::new(),
+                data: product,
+            };
+
+            let token = client::<UpdateProduct>(UpdateProduct::build(variables))
+                .await
+                .unwrap()
+                .update_product
+                .unwrap()
+                .id;
+        }
+    });
+
     let form: NodeRef<html::Input> = create_node_ref();
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
