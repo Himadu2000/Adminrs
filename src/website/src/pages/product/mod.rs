@@ -10,10 +10,10 @@ use leptos_router::{use_params, Params};
 use query::{
     crud::{
         CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
-        UpdateProduct, UpdateProductVariables, Variables,
+        UpdateProduct, UpdateProductVariables,
     },
     input::ProductInput,
-    UnnamedQuery,
+    UnnamedQuery, Variables,
 };
 use view::View;
 
