@@ -22,11 +22,6 @@ pub struct UpdateProduct {
     pub update_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
-pub struct ProductRecord {
-    pub id: String,
-}
-
 // Delete
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation")]
@@ -35,20 +30,10 @@ pub struct DeleteProduct {
     pub delete_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
-pub struct ProductRecord {
-    pub id: String,
-}
-
 // Delete Image
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation")]
 pub struct MyMutation {
     #[arguments(id: "", index: 10)]
     pub delete_image: Option<ProductRecord>,
-}
-
-#[derive(cynic::QueryFragment, Debug)]
-pub struct ProductRecord {
-    pub id: String,
 }
