@@ -54,7 +54,7 @@ pub fn Product() -> impl IntoView {
         let product = product.to_owned();
 
         async move {
-            let variables = UpdateProductVariables {
+            let variables = CreateProductVariables {
                 id: String::new(),
                 data: product,
             };
