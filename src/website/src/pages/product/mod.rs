@@ -90,10 +90,7 @@ pub fn Product() -> impl IntoView {
         let product = product.to_owned();
 
         async move {
-            let variables = UpdateProductVariables {
-                id: String::new(),
-                data: product,
-            };
+            let variables = DeleteProductVariables { id: String::new() };
 
             let token = client::<DeleteProduct>(DeleteProduct::build(variables))
                 .await
