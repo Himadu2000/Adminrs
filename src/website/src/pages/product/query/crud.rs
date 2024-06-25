@@ -34,6 +34,12 @@ pub struct UpdateProduct {
 }
 
 // Delete
+#[derive(cynic::QueryVariables)]
+pub struct UpdateProductVariables {
+    pub id: String,
+    pub data: ProductInput,
+}
+
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation")]
 pub struct DeleteProduct {
