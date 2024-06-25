@@ -2,7 +2,7 @@ mod data;
 mod query;
 mod view;
 
-use crate::pages::client::{client, QueryBuilder};
+use crate::pages::client::{client, MutationBuilder, QueryBuilder};
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
