@@ -1,12 +1,4 @@
 use crate::pages::schema;
-use cynic::QueryFragment;
-
-#[derive(cynic::InputObject, Debug)]
-#[cynic(graphql_type = "Query")]
-pub struct UnnamedQuery {
-    #[arguments(id: "")]
-    pub get_product: Option<ProductRecord>,
-}
 
 #[derive(cynic::QueryVariables, Debug)]
 pub struct ProductInput {
