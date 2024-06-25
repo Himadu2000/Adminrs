@@ -45,7 +45,6 @@ pub fn Product() -> impl IntoView {
                 .unwrap()
                 .get_product
                 .unwrap()
-                .id
         },
     );
 
@@ -111,7 +110,7 @@ pub fn Product() -> impl IntoView {
 
     let data = Data {
         value,
-        text: response,
+        product: response,
     };
 
     view! {
