@@ -1,9 +1,9 @@
+use super::input::ProductInputFields;
 use crate::pages::schema;
-use cynic::QueryFragment;
 
 // Create
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation", variables = "FilmVariables")]
+#[cynic(graphql_type = "Mutation", variables = "ProductInput")]
 pub struct MyMutation {
     #[arguments(data: {  })]
     pub create_product: Vec<ProductRecord>,
@@ -16,7 +16,7 @@ pub struct ProductRecord {
 
 // Update
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation", variables = "FilmVariables")]
+#[cynic(graphql_type = "Mutation", variables = "ProductInput")]
 pub struct MyMutation {
     #[arguments(data: {  }, id: "")]
     pub update_product: Option<ProductRecord>,
