@@ -5,12 +5,12 @@ use leptos_meta::*;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
-pub fn View<E1, E2>(data: Data, events: (E1, E2)) -> impl IntoView
+pub fn View<E1, E2, E3, E4>(data: Data, events: (E1, E2)) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
-    E1: Fn(FileList) + 'static,
-    E2: Fn(MouseEvent) + 'static,
-    E2: Fn(MouseEvent) + 'static,
+    E2: Fn(FileList) + 'static,
+    E3: Fn(MouseEvent) + 'static,
+    E4: Fn(MouseEvent) + 'static,
 {
     view! {
         <Title text="Home"/>
