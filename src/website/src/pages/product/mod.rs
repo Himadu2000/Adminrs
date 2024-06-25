@@ -8,6 +8,7 @@ use leptos::*;
 use leptos_router::{use_params, Params};
 use query::{
     crud::{CreateProduct, DeleteProduct, UpdateProduct},
+    input::ProductInput,
     UnnamedQuery,
 };
 use view::View;
@@ -45,7 +46,7 @@ pub fn Product() -> impl IntoView {
     let add = move |_| set_value.update(|value| *value += 1);
     let sub = move |_| set_value.update(|value| *value -= 1);
 
-    let update = create_action(move |email: &String| {
+    let update = create_action(move |product: &ProductInput| {
         let email = email.to_owned();
 
         async move {
