@@ -40,7 +40,7 @@ pub fn Product() -> impl IntoView {
         |_| async move {
             let variables = Variables { id: String::new() };
 
-            client::<UnnamedQuery>(UnnamedQuery::build(()))
+            client::<UnnamedQuery>(UnnamedQuery::build(variables))
                 .await
                 .unwrap()
                 .get_product
