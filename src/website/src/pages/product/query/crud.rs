@@ -40,7 +40,7 @@ pub struct DeleteProductVariables {
 }
 
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation")]
+#[cynic(graphql_type = "Mutation", variables = "DeleteProductVariables")]
 pub struct DeleteProduct {
     #[arguments(id: "")]
     pub delete_product: Option<ProductRecord>,
