@@ -10,7 +10,7 @@ pub struct CreateProductVariables {
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "CreateProductVariables")]
 pub struct CreateProduct {
-    #[arguments(data: {  })]
+    #[arguments(data: $data)]
     pub create_product: Vec<ProductRecord>,
 }
 
@@ -29,7 +29,7 @@ pub struct UpdateProductVariables {
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "UpdateProductVariables")]
 pub struct UpdateProduct {
-    #[arguments(data: {  }, id: "")]
+    #[arguments(data: $data, id: $id)]
     pub update_product: Option<ProductRecord>,
 }
 
@@ -42,7 +42,7 @@ pub struct DeleteProductVariables {
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "DeleteProductVariables")]
 pub struct DeleteProduct {
-    #[arguments(id: "")]
+    #[arguments(id: $id)]
     pub delete_product: Option<ProductRecord>,
 }
 
