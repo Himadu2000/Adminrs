@@ -86,7 +86,7 @@ pub fn Product() -> impl IntoView {
         }
     });
 
-    let update = create_action(move |product: &ProductInput| {
+    let delete = create_action(move |product: &ProductInput| {
         let product = product.to_owned();
 
         async move {
