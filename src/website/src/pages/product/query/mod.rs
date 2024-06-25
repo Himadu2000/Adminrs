@@ -7,7 +7,7 @@ use cynic::QueryFragment;
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Query")]
 pub struct UnnamedQuery {
-    #[arguments(id: "")]
+    #[arguments(id: $id)]
     pub get_product: Option<ProductRecord>,
 }
 
