@@ -66,10 +66,7 @@ pub fn Login() -> impl IntoView {
         login.dispatch(value);
     };
 
-    let data = Data {
-        text: resource,
-        form,
-    };
+    let data = Data { form };
 
     view! {
         <View data=data events=(on_submit) form=form />
