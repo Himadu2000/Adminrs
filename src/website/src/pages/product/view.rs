@@ -26,8 +26,8 @@ where
         fallback=move || view! { <p>"Loading..."</p> }
     >
         {move || {
-            data.text.get()
-                .map(|text| view! { <p>{text}</p> })
+            data.product.get()
+                .map(|product| view! { <p>{text}</p> })
         }}
     </Suspense>
                 </div>
