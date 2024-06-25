@@ -4,7 +4,7 @@ use crate::pages::schema;
 // Create
 #[derive(cynic::QueryVariables)]
 pub struct CreateProductVariables {
-    pub email: String,
+    pub data: ProductInputFields,
 }
 
 #[derive(cynic::QueryFragment, Debug)]
