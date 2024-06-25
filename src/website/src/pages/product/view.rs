@@ -36,7 +36,7 @@ where
             data.product.get()
                 .map(|product| view! {
                     <div>
-                    <form on:submit=events>
+                    <form on:submit=events.1>
 
                 <input type="text" placeholder="Enter Username" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <input type="text" placeholder="Enter Username" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
@@ -55,7 +55,7 @@ where
 
             <Toggle state=state set_state=set_state/>
 
-            <Upload custom_request>
+            <Upload custom_request=events.2>
         <UploadDragger>"Click or drag a file to this area to upload"</UploadDragger>
     </Upload>
                     </div>
