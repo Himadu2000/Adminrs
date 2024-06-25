@@ -8,7 +8,7 @@ pub struct CreateProductVariables {
 }
 
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation", variables = "ProductInput")]
+#[cynic(graphql_type = "Mutation", variables = "CreateProductVariables")]
 pub struct CreateProduct {
     #[arguments(data: {  })]
     pub create_product: Vec<ProductRecord>,
