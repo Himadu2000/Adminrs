@@ -46,7 +46,7 @@ where
                 <input type="text" placeholder="Enter Meta Description" name="meta_description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <input type="text" placeholder="Enter Description" name="description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
 
-                <input type="number" placeholder="Enter Username" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <input type="number" placeholder="Enter Regular price ($)" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <input type="number" placeholder="Enter Username" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <input type="number" placeholder="Enter Username" name="uname" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
 
