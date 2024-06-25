@@ -18,6 +18,7 @@ where
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
         .header("Authorization", flag.get())
+        .header("store_id", flag.get())
         .send()
         .await
         .unwrap()
