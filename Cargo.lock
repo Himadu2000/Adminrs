@@ -3743,6 +3743,7 @@ dependencies = [
  "leptos_router",
  "log",
  "reqwest",
+ "serde",
  "simple_logger",
  "thaw",
  "thiserror",
