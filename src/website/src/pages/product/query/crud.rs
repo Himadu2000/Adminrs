@@ -2,6 +2,11 @@ use super::input::ProductInputFields;
 use crate::pages::schema;
 
 // Create
+#[derive(cynic::QueryVariables)]
+pub struct Variables {
+    pub email: String,
+}
+
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "ProductInput")]
 pub struct CreateProduct {
