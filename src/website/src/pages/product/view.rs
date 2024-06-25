@@ -27,7 +27,11 @@ where
     >
         {move || {
             data.product.get()
-                .map(|product| view! { <p>{text}</p> })
+                .map(|product| view! {
+                    <div>
+
+                    </div>
+                 })
         }}
     </Suspense>
                 </div>
