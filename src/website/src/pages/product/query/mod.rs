@@ -2,6 +2,7 @@ pub mod crud;
 pub mod input;
 
 use crate::pages::schema;
+use serde::Serialize;
 
 #[derive(cynic::QueryVariables)]
 pub struct Variables {
@@ -15,7 +16,7 @@ pub struct UnnamedQuery {
     pub get_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct ProductRecord {
     pub attributes: Vec<Attribute>,
     pub code: Option<String>,
