@@ -15,6 +15,7 @@ use query::{
     input::ProductInput,
     UnnamedQuery, Variables,
 };
+use thaw::FileList;
 use view::View;
 
 #[derive(Params, PartialEq)]
@@ -108,6 +109,8 @@ pub fn Product() -> impl IntoView {
 
         update.dispatch(value);
     };
+
+    let custom_request = move |file_list: FileList| {};
 
     let data = Data {
         value,
