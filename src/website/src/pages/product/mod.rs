@@ -1,3 +1,4 @@
+mod components;
 mod data;
 mod query;
 mod view;
