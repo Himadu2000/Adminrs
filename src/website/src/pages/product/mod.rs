@@ -7,7 +7,10 @@ use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
 use query::{
-    crud::{CreateProduct, DeleteProduct, UpdateProduct},
+    crud::{
+        CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
+        UpdateProduct, UpdateProductVariables,
+    },
     input::ProductInput,
     UnnamedQuery,
 };
