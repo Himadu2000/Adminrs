@@ -66,7 +66,8 @@ pub fn Product() -> impl IntoView {
                 .first()
                 .unwrap()
                 .to_owned()
-                .id;
+                .id
+                .clone();
         }
     });
 
