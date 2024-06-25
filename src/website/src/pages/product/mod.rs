@@ -61,7 +61,9 @@ pub fn Product() -> impl IntoView {
             let token = client::<UpdateProduct>(UpdateProduct::build(variables))
                 .await
                 .unwrap()
-                .login;
+                .update_product
+                .unwrap()
+                .id;
 
             set_flag.set(token);
         }
