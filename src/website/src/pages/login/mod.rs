@@ -23,22 +23,22 @@ pub fn Login() -> impl IntoView {
     let (_, set_flag, _) = use_local_storage::<String, FromToStringCodec>("token");
 
     //? Save the token if it's in the URL.
-    let resource = create_local_resource(
-        || (),
-        move |_| async move {
-            let token = query.with(|params| {
-                params
-                    .as_ref()
-                    .map(|params| params.token.clone())
-                    .unwrap()
-                    .unwrap_or_default()
-            });
+    // let resource = create_local_resource(
+    //     || (),
+    //     move |_| async move {
+    //         let token = query.with(|params| {
+    //             params
+    //                 .as_ref()
+    //                 .map(|params| params.token.clone())
+    //                 .unwrap()
+    //                 .unwrap_or_default()
+    //         });
 
-            set_flag.set(token.clone());
+    //         set_flag.set(token.clone());
 
-            token
-        },
-    );
+    //         token
+    //     },
+    // );
 
     // 03124701209@gmail.com
     let login = create_action(move |email: &String| {
