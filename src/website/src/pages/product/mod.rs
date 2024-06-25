@@ -52,7 +52,7 @@ pub fn Product() -> impl IntoView {
         async move {
             let variables = Variables { email };
 
-            let token = client::<MyMutation>(MyMutation::build(variables))
+            let token = client::<MyMutation>(UpdateProduct::build(variables))
                 .await
                 .unwrap()
                 .login;
