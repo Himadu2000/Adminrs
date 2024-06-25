@@ -3,6 +3,5 @@ use leptos::{ReadSignal, Resource};
 
 pub struct Data {
     pub value: ReadSignal<i8>,
-    pub product: ReadSignal<ProductRecord>,
     pub product: Resource<ProductRecord, String>,
 }
