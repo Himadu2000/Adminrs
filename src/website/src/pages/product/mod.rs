@@ -107,7 +107,7 @@ pub fn Product() -> impl IntoView {
 
         let value = form.get().expect("<input> should be mounted").value();
 
-        update.dispatch(value);
+        // update.dispatch(value);
     };
 
     let custom_request = move |file_list: FileList| {};
