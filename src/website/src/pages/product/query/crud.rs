@@ -4,7 +4,7 @@ use crate::pages::schema;
 // Create
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "ProductInput")]
-pub struct MyMutation {
+pub struct CreateProduct {
     #[arguments(data: {  })]
     pub create_product: Vec<ProductRecord>,
 }
@@ -17,7 +17,7 @@ pub struct ProductRecord {
 // Update
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "ProductInput")]
-pub struct MyMutation {
+pub struct UpdateProduct {
     #[arguments(data: {  }, id: "")]
     pub update_product: Option<ProductRecord>,
 }
@@ -30,7 +30,7 @@ pub struct ProductRecord {
 // Delete
 #[derive(cynic::QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation")]
-pub struct MyMutation {
+pub struct DeleteProduct {
     #[arguments(id: "")]
     pub delete_product: Option<ProductRecord>,
 }
