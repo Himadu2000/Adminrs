@@ -10,7 +10,7 @@ pub struct Variables {
 }
 
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Query")]
+#[cynic(graphql_type = "Query", variables = "Variables")]
 pub struct UnnamedQuery {
     #[arguments(id: $id)]
     pub get_product: Option<ProductRecord>,
