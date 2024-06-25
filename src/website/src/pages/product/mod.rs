@@ -115,6 +115,7 @@ pub fn Product() -> impl IntoView {
     let data = Data {
         value,
         state,
+        set_state,
         product: response,
     };
 
