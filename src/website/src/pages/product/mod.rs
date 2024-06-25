@@ -47,7 +47,7 @@ pub fn Product() -> impl IntoView {
     let sub = move |_| set_value.update(|value| *value -= 1);
 
     let update = create_action(move |product: &ProductInput| {
-        let email = email.to_owned();
+        let product = product.to_owned();
 
         async move {
             let variables = Variables { email };
