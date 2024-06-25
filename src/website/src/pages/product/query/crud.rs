@@ -1,10 +1,10 @@
-use super::input::ProductInputFields;
+use super::input::ProductInput;
 use crate::pages::schema;
 
 // Create
 #[derive(cynic::QueryVariables)]
 pub struct CreateProductVariables {
-    pub data: ProductInputFields,
+    pub data: ProductInput,
 }
 
 #[derive(cynic::QueryFragment, Debug)]
