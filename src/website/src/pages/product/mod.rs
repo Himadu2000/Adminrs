@@ -66,7 +66,7 @@ pub fn Product() -> impl IntoView {
     });
 
     let update = create_action(move |input: &(String, ProductInput)| {
-        let input = input.to_owned();
+        let (id, data) = input.to_owned();
 
         async move {
             let variables = UpdateProductVariables {
