@@ -6,7 +6,10 @@ use crate::pages::client::{client, QueryBuilder};
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
-use query::{crud::MyMutation, UnnamedQuery};
+use query::{
+    crud::{CreateProduct, DeleteProduct, UpdateProduct},
+    UnnamedQuery,
+};
 use view::View;
 
 #[derive(Params, PartialEq)]
