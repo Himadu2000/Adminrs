@@ -52,7 +52,7 @@ pub struct ProductRecord {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct Variant {
     pub options: String,
     pub price: f64,
@@ -61,7 +61,7 @@ pub struct Variant {
     pub weight: Option<f64>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct ProductOption {
     pub control: ProductOptionControl,
     pub name: String,
@@ -70,26 +70,26 @@ pub struct ProductOption {
     pub values: Vec<Value>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct Value {
     pub name: String,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct Image {
     pub alt: Option<String>,
     pub file: String,
     pub position: i32,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct Dimensions {
     pub height: f64,
     pub length: f64,
     pub width: f64,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(cynic::QueryFragment, Debug, Serialize)]
 pub struct Attribute {
     pub name: String,
     pub value: String,
