@@ -54,10 +54,7 @@ pub fn Product() -> impl IntoView {
         let product = product.to_owned();
 
         async move {
-            let variables = CreateProductVariables {
-                id: String::new(),
-                data: product,
-            };
+            let variables = CreateProductVariables { data: product };
 
             let token = client::<CreateProduct>(CreateProduct::build(variables))
                 .await
