@@ -2,12 +2,12 @@ use super::data::Data;
 use leptonic::toggle::Toggle;
 use leptos::{ev::MouseEvent, *};
 use leptos_meta::*;
-use thaw::{Upload, UploadDragger};
+use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
 pub fn View<E1, E2>(data: Data, events: (E1, E2)) -> impl IntoView
 where
-    E1: Fn(MouseEvent) + 'static,
+    E1: Fn(FileList) + 'static,
     E2: Fn(MouseEvent) + 'static,
 {
     view! {
