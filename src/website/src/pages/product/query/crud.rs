@@ -3,7 +3,7 @@ use crate::pages::schema;
 
 // Create
 #[derive(cynic::QueryVariables)]
-pub struct Variables {
+pub struct CreateProductVariables {
     pub email: String,
 }
 
