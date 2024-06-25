@@ -10,7 +10,7 @@ use leptos_router::{use_params, Params};
 use query::{
     crud::{
         CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
-        UpdateProduct, UpdateProductVariables,
+        UpdateProduct, UpdateProductVariables, Variables,
     },
     input::ProductInput,
     UnnamedQuery,
@@ -38,6 +38,8 @@ pub fn Product() -> impl IntoView {
     let response = create_resource(
         || (),
         |_| async move {
+            let variables = Variables { id: String::new() };
+
             client::<UnnamedQuery>(UnnamedQuery::build(()))
                 .await
                 .unwrap()
