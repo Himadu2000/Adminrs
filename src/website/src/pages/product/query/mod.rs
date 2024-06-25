@@ -10,7 +10,7 @@ pub struct UnnamedQuery {
     pub get_product: Option<ProductRecord>,
 }
 
-#[derive(cynic::QueryFragment, cynic::QueryVariables, Debug)]
+#[derive(cynic::QueryFragment Debug)]
 pub struct ProductRecord {
     pub attributes: Vec<Attribute>,
     pub code: Option<String>,
