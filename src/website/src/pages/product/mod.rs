@@ -60,7 +60,9 @@ pub fn Product() -> impl IntoView {
                 .await
                 .unwrap()
                 .create_product
+                .first()
                 .unwrap()
+                .to_owned()
                 .id;
         }
     });
