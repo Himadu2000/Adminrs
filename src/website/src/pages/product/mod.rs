@@ -42,6 +42,31 @@ pub fn Product() -> impl IntoView {
     let add = move |_| set_value.update(|value| *value += 1);
     let sub = move |_| set_value.update(|value| *value -= 1);
 
+    let update = create_action(move |email: &String| {
+        let email = email.to_owned();
+
+        async move {
+            let variables = Variables { email };
+
+            let token = client::<MyMutation>(MyMutation::build(variables))
+                .await
+                .unwrap()
+                .login;
+
+            set_flag.set(token);
+        }
+    });
+
+    let form: NodeRef<html::Input> = create_node_ref();
+
+    let on_submit = move |ev: leptos::ev::SubmitEvent| {
+        ev.prevent_default();
+
+        let value = form.get().expect("<input> should be mounted").value();
+
+        update.dispatch(value);
+    };
+
     let data = Data {
         value,
         text: response,
