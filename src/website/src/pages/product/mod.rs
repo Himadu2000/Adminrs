@@ -59,7 +59,7 @@ pub fn Product() -> impl IntoView {
             let token = client::<CreateProduct>(CreateProduct::build(variables))
                 .await
                 .unwrap()
-                .update_product
+                .create_product
                 .unwrap()
                 .id;
         }
@@ -92,7 +92,7 @@ pub fn Product() -> impl IntoView {
             let token = client::<DeleteProduct>(DeleteProduct::build(variables))
                 .await
                 .unwrap()
-                .update_product
+                .delete_product
                 .unwrap()
                 .id;
         }
