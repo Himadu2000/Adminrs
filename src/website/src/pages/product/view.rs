@@ -1,6 +1,7 @@
 use super::data::Data;
 use leptos::{ev::MouseEvent, *};
 use leptos_meta::*;
+use thaw::{Upload, UploadDragger};
 
 #[component]
 pub fn View<E1, E2>(data: Data, events: (E1, E2)) -> impl IntoView
