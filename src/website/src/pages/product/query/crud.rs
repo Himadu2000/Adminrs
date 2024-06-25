@@ -3,7 +3,7 @@ use cynic::QueryFragment;
 
 // Create
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation")]
+#[cynic(graphql_type = "Mutation", variables = "FilmVariables")]
 pub struct MyMutation {
     #[arguments(data: {  })]
     pub create_product: Vec<ProductRecord>,
@@ -16,7 +16,7 @@ pub struct ProductRecord {
 
 // Update
 #[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation")]
+#[cynic(graphql_type = "Mutation", variables = "FilmVariables")]
 pub struct MyMutation {
     #[arguments(data: {  }, id: "")]
     pub update_product: Option<ProductRecord>,
