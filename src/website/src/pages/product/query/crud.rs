@@ -35,7 +35,7 @@ pub struct UpdateProduct {
 
 // Delete
 #[derive(cynic::QueryVariables)]
-pub struct UpdateProductVariables {
+pub struct DeleteProductVariables {
     pub id: String,
 }
 
