@@ -1,6 +1,9 @@
 use super::data::Data;
 use leptonic::toggle::Toggle;
-use leptos::{ev::MouseEvent, *};
+use leptos::{
+    ev::{MouseEvent, SubmitEvent},
+    *,
+};
 use leptos_meta::*;
 use thaw::{FileList, Upload, UploadDragger};
 
