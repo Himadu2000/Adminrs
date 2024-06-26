@@ -22,13 +22,6 @@ pub fn App() -> impl IntoView {
     let (_, set_store_id, _) = use_local_storage::<String, FromToStringCodec>("store_id");
     provide_meta_context();
 
-    //? Set environment variable to local storage for reqwest client
-    // "Store ID not provided...!"
-    create_effect(move |_| {
-        let store_id_env = store_id
-            .get_untracked()
-            .unwrap_or("store:obgsketriakxn1wh3q2e".to_owned());
-        set_store_id.set(store_id_env);
     });
 
     view! {
