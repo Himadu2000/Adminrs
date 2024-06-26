@@ -29,7 +29,7 @@ struct ProductParams {
 pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
     let (selected_product, set_selected_product) =
-        create_signal::<String>(String::from("zinftrowowh62zcp64fj"));
+        create_signal::<String>(String::from("jduohkgejwv7xfdpyh7e"));
     let form_values = create_rw_signal::<HashMap<String, String>>(HashMap::new());
     let (state, set_state) = create_signal(false);
 
@@ -108,15 +108,6 @@ pub fn Product() -> impl IntoView {
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
-
-        info!("1: {:?}", form_values.get());
-
-        let data = ProductInput {
-            name: Some("AAA".to_owned()),
-            ..Default::default()
-        };
-
-        update.dispatch((selected_product.get(), data));
     };
 
     let custom_request = move |file_list: FileList| {};
@@ -128,7 +119,16 @@ pub fn Product() -> impl IntoView {
         product: response,
     };
 
+    let update_action = create_action(move |input: &()| async move {
+        let data = ProductInput {
+            name: form_values.get().get(&String::from("name")).cloned(),
+            ..Default::default()
+        };
+
+        update.dispatch((selected_product.get(), data));
+    });
+
     view! {
-        <View data=data form_values=form_values on_submit=on_submit custom_request=custom_request />
+        <View data=data form_values=form_values on_submit=update_action />
     }
 }
