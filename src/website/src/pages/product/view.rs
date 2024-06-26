@@ -30,9 +30,6 @@ pub fn TextInput(
 #[component]
 pub fn View<E1, E2, E3, E4, E5>(
     data: Data,
-    events: (E1, E2, E3, E4, E5),
-    sub: E1,
-    form: NodeRef<html::Form>,
     form_values: RwSignal<HashMap<String, String>>,
 ) -> impl IntoView
 where
