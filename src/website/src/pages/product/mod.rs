@@ -132,6 +132,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data events=(on_submit, custom_request, add, sub, sub) sub=on_submit form=form form_values=form_values />
+        <View data=data form_values=form_values on_submit=on_submit custom_request=custom_request />
     }
 }
