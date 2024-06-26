@@ -28,7 +28,6 @@ pub struct ProductRecord {
     pub dimensions: Option<Dimensions>,
     pub discontinued: bool,
     pub enabled: bool,
-    pub id: String,
     pub images: Vec<Image>,
     pub meta_description: Option<String>,
     pub meta_title: Option<String>,
