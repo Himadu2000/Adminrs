@@ -13,7 +13,7 @@ pub struct Variables {
 #[cynic(graphql_type = "Query", variables = "Variables")]
 pub struct UnnamedQuery {
     #[arguments(id: $id)]
-    pub get_product: ProductDbRecord,
+    pub get_product: ProductRecord,
 }
 
 #[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
@@ -22,7 +22,7 @@ pub struct ProductDbRecord {
 }
 
 #[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct Product {
+pub struct ProductRecord {
     pub attributes: Vec<Attribute>,
     pub code: Option<String>,
     pub cost_price: Option<f64>,
