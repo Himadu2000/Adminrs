@@ -7,6 +7,13 @@ use leptos::{
 use leptos_meta::*;
 use thaw::{FileList, Upload, UploadDragger};
 
+#[island]
+pub fn TextInput(form: NodeRef<html::Form>) -> impl IntoView {
+    view! {
+        <input type="text" placeholder="Enter Page title" name="meta_title" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+    }
+}
+
 #[component]
 pub fn View<E1, E2, E3, E4, E5>(
     data: Data,
