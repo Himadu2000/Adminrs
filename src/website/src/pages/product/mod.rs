@@ -26,6 +26,7 @@ struct ProductParams {
 #[island]
 pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
+    let (product, set_product) = create_signal::<String>(String::from("zinftrowowh62zcp64fj"));
     let (state, set_state) = create_signal(false);
 
     let id = move || {
