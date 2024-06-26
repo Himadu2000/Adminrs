@@ -2,7 +2,7 @@ use cynic::{
     serde::{Deserialize, Serialize},
     GraphQlResponse, QueryFragment,
 };
-use leptos::{create_resource, SignalGet, SignalGetUntracked};
+use leptos::{create_signal, SignalGet, SignalGetUntracked};
 use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
 use reqwest::Client;
 use std::env::var;
