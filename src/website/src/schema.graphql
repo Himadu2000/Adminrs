@@ -43,42 +43,13 @@ input ImageInput {
   position: Int!
 }
 
-type IntConnection {
-  """
-  Information to aid in pagination.
-  """
-  pageInfo: PageInfo!
-  """
-  A list of edges.
-  """
-  edges: [IntEdge!]!
-  """
-  A list of nodes.
-  """
-  nodes: [Int!]!
-}
-
-"""
-An edge in a connection.
-"""
-type IntEdge {
-  """
-  The item at the end of the edge
-  """
-  node: Int!
-  """
-  A cursor for use in pagination
-  """
-  cursor: String!
-}
-
 type Mutation {
   status: String!
   license: String!
   login(email: String!): String!
   createStore(data: StoreInput!): [StoreRecord!]!
   createProduct(data: ProductInput!): [ProductRecord!]!
-  updateProduct(id: String!, data: ProductInput!, deleteImageIndex: Int): ProductRecord
+  updateProduct(id: String!, data: ProductInput!, images: [Upload!], deleteImageIndex: Int): ProductRecord
   deleteProduct(id: String!): ProductRecord
 }
 
@@ -201,12 +172,41 @@ type ProductRecord {
   id: String!
 }
 
+type ProductRecordConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
+  edges: [ProductRecordEdge!]!
+  """
+  A list of nodes.
+  """
+  nodes: [ProductRecord!]!
+}
+
+"""
+An edge in a connection.
+"""
+type ProductRecordEdge {
+  """
+  The item at the end of the edge
+  """
+  node: ProductRecord!
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
 type Query {
   status: String!
   license: String!
   stores: String!
   getProduct(id: String!): ProductRecord!
-  getProducts(after: String, before: String, first: Int, last: Int, filter: Filter): IntConnection!
+  getProducts(after: String, before: String, first: Int, last: Int, filter: Filter): ProductRecordConnection!
 }
 
 input StoreInput {
@@ -218,6 +218,8 @@ type StoreRecord {
   users: String!
   id: String!
 }
+
+scalar Upload
 
 type Value {
   name: String!
