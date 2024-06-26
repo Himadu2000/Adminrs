@@ -8,7 +8,7 @@ use leptos_meta::*;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
-pub fn View<E1, E2, E3, E4, E5>(data: Data, events: (E1, E2, E3, E4, E5)) -> impl IntoView
+pub fn View<E1, E2, E3, E4, E5>(data: Data, events: (E1, E2, E3, E4, E5), sub: E1) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
     E2: Fn(FileList) + 'static,
@@ -37,7 +37,7 @@ where
             data.product.get()
                 .map(|product| view! {
                     <div>
-                    <form on:submit=events.1>
+                    <form on:submit=move |file_list|{}>
 
                 <input type="text" placeholder="Enter Product name *" name="name" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <input type="text" placeholder="Enter Slug" name="slug" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
@@ -58,7 +58,7 @@ where
             <Toggle state=data.state set_state=data.set_state/>
 
             <Upload multiple=true custom_request=move |file_list: FileList| {}>
-        <UploadDragger><p class="text-white">"Click or drag a file to this area to upload"</p></UploadDragger>
+        <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p></UploadDragger>
     </Upload>
                     </div>
                  })
