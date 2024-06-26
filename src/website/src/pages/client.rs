@@ -17,16 +17,16 @@ where
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
     let (local_store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
-    let store_id = create_resource(
-        || (),
-        move |_| async move { var("STORE_ID").unwrap_or("obgsketriakxn1wh3q2e".to_owned()) },
-    );
-
     Client::new()
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
         .header("Authorization", flag.get_untracked())
-        .header("store_id", store_id.get().unwrap())
+        .header(
+            "store_id",
+            store_id
+                .get_untracked()
+                .unwrap_or(local_store_id.get_untracked()),
+        )
         .send()
         .await
         .unwrap()
