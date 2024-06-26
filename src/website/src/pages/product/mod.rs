@@ -54,7 +54,7 @@ pub fn Product() -> impl IntoView {
                 .unwrap()
                 .get_product;
 
-            let data_product = data.product.clone();
+            let data_product = data.clone();
             form_values.update(|values| {
                 values.insert(String::from("name"), data_product.name.unwrap_or_default());
                 values.insert(String::from("slug"), data_product.slug.unwrap_or_default());
