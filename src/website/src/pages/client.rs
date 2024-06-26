@@ -2,9 +2,10 @@ use cynic::{
     serde::{Deserialize, Serialize},
     GraphQlResponse, QueryFragment,
 };
-use leptos::SignalGet;
+use leptos::{SignalGet, SignalGetUntracked};
 use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
 use reqwest::Client;
+use std::env::var;
 
 pub use cynic::{MutationBuilder, QueryBuilder};
 
@@ -14,11 +15,16 @@ where
 {
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
 
+    let store_id = create_resource(
+        || (),
+        move |_| var("STORE_ID").unwrap_or("obgsketriakxn1wh3q2e".to_owned()),
+    );
+
     Client::new()
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
-        .header("Authorization", flag.get())
-        .header("store_id", flag.get())
+        .header("Authorization", flag.get_untracked())
+        .header("store_id", store_id)
         .send()
         .await
         .unwrap()
