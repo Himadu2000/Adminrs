@@ -17,7 +17,7 @@ where
 
     let store_id = create_resource(
         || (),
-        move |_| var("STORE_ID").unwrap_or("obgsketriakxn1wh3q2e".to_owned()),
+        move |_| async move { var("STORE_ID").unwrap_or("obgsketriakxn1wh3q2e".to_owned()) },
     );
 
     Client::new()
