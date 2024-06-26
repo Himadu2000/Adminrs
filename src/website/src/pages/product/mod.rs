@@ -49,10 +49,12 @@ pub fn Product() -> impl IntoView {
                 id: selected_product.get(),
             };
 
-            client::<UnnamedQuery>(UnnamedQuery::build(variables))
+            let data = client::<UnnamedQuery>(UnnamedQuery::build(variables))
                 .await
                 .unwrap()
-                .get_product
+                .get_product;
+
+            data
         },
     );
 
