@@ -65,18 +65,18 @@ where
                     <div>
                     <form on:submit=move |file_list|{}>
 
-                <input input_type="text" placeholder="Enter Product name *" name="name" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
-                <input input_type="text" placeholder="Enter Slug" name="slug" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="text" placeholder="Enter Product name *" name="name" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="text" placeholder="Enter Slug" name="slug" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <p>"The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."</p>
-                <input input_type="text" placeholder="Enter Page title" name="meta_title" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
-                <input input_type="text" placeholder="Enter Meta Description" name="meta_description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
-                <input input_type="text" placeholder="Enter Description" name="description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="text" placeholder="Enter Page title" name="meta_title" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="text" placeholder="Enter Meta Description" name="meta_description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="text" placeholder="Enter Description" name="description" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
 
-                <input input_type="number" placeholder="Enter Regular price ($)" name="regular_price" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
-                <input input_type="number" placeholder="Enter Stock quantity" name="stock_quantity" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
-                <input input_type="number" placeholder="Enter Weight (kg)" name="weight" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="number" placeholder="Enter Regular price ($)" name="regular_price" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="number" placeholder="Enter Stock quantity" name="stock_quantity" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="number" placeholder="Enter Weight (kg)" name="weight" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
 
-                <input input_type="number" placeholder="Enter Position" name="position" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+                <TextInput input_type="number" placeholder="Enter Position" name="position" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
 
                 <input type="submit" value="Save" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white"/>
             </form>
