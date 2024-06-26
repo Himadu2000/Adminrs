@@ -56,9 +56,6 @@ pub fn Product() -> impl IntoView {
         },
     );
 
-    let add = move |_| set_value.update(|value| *value += 1);
-    let sub = move |_| set_value.update(|value| *value -= 1);
-
     let create = create_action(move |product: &ProductInput| {
         let product = product.to_owned();
 
