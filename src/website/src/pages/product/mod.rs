@@ -54,6 +54,24 @@ pub fn Product() -> impl IntoView {
                 .unwrap()
                 .get_product;
 
+            let data_product = data.product.clone();
+            form_values.update(|values| {
+                values.insert(String::from("name"), data_product.name.unwrap_or_default());
+                values.insert(String::from("slug"), data_product.slug.unwrap_or_default());
+                values.insert(
+                    String::from("meta_title"),
+                    data_product.meta_title.unwrap_or_default(),
+                );
+                values.insert(
+                    String::from("meta_description"),
+                    data_product.meta_description.unwrap_or_default(),
+                );
+                values.insert(
+                    String::from("description"),
+                    data_product.description.unwrap_or_default(),
+                );
+            });
+
             data
         },
     );
