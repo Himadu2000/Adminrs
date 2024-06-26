@@ -5,10 +5,11 @@ use leptos::{
     *,
 };
 use leptos_meta::*;
+use std::collections::HashMap;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[island]
-pub fn TextInput(form: NodeRef<html::Form>) -> impl IntoView {
+pub fn TextInput(input: RwSignal<HashMap<String, String>>) -> impl IntoView {
     view! {
         <input type="text" placeholder="Enter Page title" name="meta_title" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
     }
