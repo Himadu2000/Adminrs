@@ -18,8 +18,6 @@ mod schema {}
 
 #[component]
 pub fn App() -> impl IntoView {
-    let (store_id, _) = create_signal(var("STORE_ID"));
-    let (_, set_store_id, _) = use_local_storage::<String, FromToStringCodec>("store_id");
     provide_meta_context();
 
     });
