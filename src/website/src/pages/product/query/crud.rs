@@ -45,11 +45,3 @@ pub struct DeleteProduct {
     #[arguments(id: $id)]
     pub delete_product: Option<ProductRecord>,
 }
-
-// Delete Image
-#[derive(cynic::QueryFragment, Debug)]
-#[cynic(graphql_type = "Mutation")]
-pub struct MyMutation {
-    #[arguments(id: "", index: 10)]
-    pub delete_image: Option<ProductRecord>,
-}
