@@ -28,9 +28,11 @@ pub fn TextInput(
 }
 
 #[component]
-pub fn View<E1, E2, E3, E4, E5>(
+pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
+    on_submit: E1,
+    custom_request: E2,
 ) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
