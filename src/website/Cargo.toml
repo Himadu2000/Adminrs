@@ -37,7 +37,6 @@ leptos-struct-table = "0.10.2"
 thaw = "0.3.2"
 leptos-use = "0.10.10"
 serde = "1.0.203"
-leptos_declarative = { git = "https://github.com/jquesada2016/leptos-declarative", rev = "840375b" }
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
