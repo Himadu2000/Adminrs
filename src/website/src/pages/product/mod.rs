@@ -105,7 +105,7 @@ pub fn Product() -> impl IntoView {
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
 
-        let value = form.get().expect("<input> should be mounted").value();
+        let value = form.get().expect("<form> should be mounted").value();
 
         // update.dispatch(value);
     };
