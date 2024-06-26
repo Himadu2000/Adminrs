@@ -14,6 +14,7 @@ where
     UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
 {
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
+    let (local_store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
     let store_id = create_resource(
         || (),
