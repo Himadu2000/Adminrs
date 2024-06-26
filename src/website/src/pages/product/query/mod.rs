@@ -17,7 +17,12 @@ pub struct UnnamedQuery {
 }
 
 #[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct ProductRecord {
+pub struct ProductDbRecord {
+    pub product: Product,
+}
+
+#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
+pub struct Product {
     pub attributes: Vec<Attribute>,
     pub code: Option<String>,
     pub cost_price: Option<f64>,
