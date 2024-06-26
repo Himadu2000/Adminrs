@@ -9,12 +9,12 @@ use std::collections::HashMap;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[island]
-pub fn TextInput<'a>(
-    input: RwSignal<HashMap<&str, String>>,
-    typea: &'a str,
-    placeholder: &'a str,
-    name: &'a str,
-    class: &'a str,
+pub fn TextInput(
+    input: RwSignal<HashMap<&'static str, String>>,
+    typea: &'static str,
+    placeholder: &'static str,
+    name: &'static str,
+    class: &'static str,
 ) -> impl IntoView {
     view! {
         <input type="text"
