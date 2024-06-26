@@ -10,22 +10,20 @@ use thaw::{FileList, Upload, UploadDragger};
 
 #[island]
 pub fn TextInput<'a>(
-    input: RwSignal<HashMap<String, String>>,
+    input: RwSignal<HashMap<&str, String>>,
     typea: &'a str,
     placeholder: &'a str,
     name: &'a str,
     class: &'a str,
 ) -> impl IntoView {
-    let name_clone = name.clone();
-
     view! {
         <input type="text"
         on:input=move |ev| {
             let value=event_target_value(&ev);
-            input.update(|values|{ values.insert(name.to_owned(), value); });
+            input.update(|values|{ values.insert(name, value); });
         }
-        prop:value=input.get().get(&name_clone)
-        placeholder="Enter Page title" name=name_clone class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+        prop:value=input.get().get(&name)
+        placeholder="Enter Page title" name=name class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
     }
 }
 
