@@ -7,6 +7,7 @@ use crate::pages::client::{client, MutationBuilder, QueryBuilder};
 use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
+use log::info;
 use query::{
     crud::{
         CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
@@ -111,7 +112,12 @@ pub fn Product() -> impl IntoView {
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
 
-        let value = form.get().expect("<form> should be mounted").value();
+        info!("1: {:?}", form_values.get());
+
+        let data = ProductInput {
+            name: Some("AAA".to_owned()),
+            ..Default::default()
+        };
 
         // update.dispatch(value);
     };
