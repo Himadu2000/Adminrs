@@ -9,9 +9,15 @@ use std::collections::HashMap;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[island]
-pub fn TextInput(input: RwSignal<HashMap<String, String>>) -> impl IntoView {
+pub fn TextInput(input: RwSignal<HashMap<String, String>>, name: String) -> impl IntoView {
     view! {
-        <input type="text" placeholder="Enter Page title" name="meta_title" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+        <input type="text"
+        on:input=move |ev| {
+            let value=event_target_value(&ev);
+            input.update(|values|{ values.insert(name, value); });
+        }
+        prop:value=input.get().get(&name)
+        placeholder="Enter Page title" name=name class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
     }
 }
 
