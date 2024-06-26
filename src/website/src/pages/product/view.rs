@@ -9,12 +9,12 @@ use std::collections::HashMap;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[island]
-pub fn TextInput(
+pub fn TextInput<'a>(
     input: RwSignal<HashMap<String, String>>,
-    type: &str,
-    placeholder: &str,
-    name: &str,
-    class: &str,
+    name: &'a str,
+    placeholder: &'a str,
+    name: &'a str,
+    class: &'a str,
 ) -> impl IntoView {
     let name_clone = name.clone();
 
