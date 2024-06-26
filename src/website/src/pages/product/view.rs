@@ -37,9 +37,6 @@ pub fn View(
 where
     E1: Fn(SubmitEvent) + 'static,
     E2: Fn(FileList) + 'static,
-    E3: Fn(MouseEvent) + 'static,
-    E4: Fn(MouseEvent) + 'static,
-    E5: Fn(MouseEvent) + 'static,
 {
     view! {
         <Title text="Home"/>
