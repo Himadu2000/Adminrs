@@ -100,7 +100,7 @@ pub fn Product() -> impl IntoView {
         }
     });
 
-    let form: NodeRef<html::Input> = create_node_ref();
+    let form: NodeRef<html::Form> = create_node_ref();
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
@@ -120,6 +120,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data events=(on_submit, custom_request, add, sub, sub) sub=on_submit />
+        <View data=data events=(on_submit, custom_request, add, sub, sub) sub=on_submit form=form />
     }
 }
