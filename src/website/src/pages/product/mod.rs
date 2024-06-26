@@ -46,7 +46,6 @@ pub fn Product() -> impl IntoView {
                 .await
                 .unwrap()
                 .get_product
-                .unwrap()
         },
     );
 
@@ -121,6 +120,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data events=(on_submit, custom_request, add, sub, sub) />
+        <View data=data events=(on_submit, custom_request, add, sub, sub) sub=on_submit />
     }
 }
