@@ -15,6 +15,7 @@ use query::{
     input::ProductInput,
     UnnamedQuery, Variables,
 };
+use std::collections::HashMap;
 use thaw::FileList;
 use view::View;
 
@@ -28,6 +29,7 @@ pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
     let (selected_product, set_selected_product) =
         create_signal::<String>(String::from("zinftrowowh62zcp64fj"));
+    let (form_values, set_form_values) = create_signal(HashMap::new());
     let (state, set_state) = create_signal(false);
 
     let id = move || {
