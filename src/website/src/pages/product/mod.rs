@@ -29,7 +29,7 @@ pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
     let (selected_product, set_selected_product) =
         create_signal::<String>(String::from("zinftrowowh62zcp64fj"));
-    let (form_values, set_form_values) = create_signal(HashMap::new());
+    let (form_values, set_form_values) = create_signal::<HashMap<String, String>>(HashMap::new());
     let (state, set_state) = create_signal(false);
 
     let id = move || {
@@ -43,9 +43,9 @@ pub fn Product() -> impl IntoView {
 
     let response = create_local_resource(
         || (),
-        |_| async move {
+        move |_| async move {
             let variables = Variables {
-                id: selected_product,
+                id: selected_product.get(),
             };
 
             client::<UnnamedQuery>(UnnamedQuery::build(variables))
