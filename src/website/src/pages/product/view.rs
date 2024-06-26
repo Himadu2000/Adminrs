@@ -11,7 +11,7 @@ use thaw::{FileList, Upload, UploadDragger};
 #[island]
 pub fn TextInput<'a>(
     input: RwSignal<HashMap<String, String>>,
-    name: &'a str,
+    typea: &'a str,
     placeholder: &'a str,
     name: &'a str,
     class: &'a str,
