@@ -23,7 +23,7 @@ pub fn TextInput(
             input.update(|values|{ values.insert(name, value); });
         }
         prop:value=input.get().get(&name)
-        placeholder="Enter Page title" name=name class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
+        placeholder=placeholder name=name class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
     }
 }
 
