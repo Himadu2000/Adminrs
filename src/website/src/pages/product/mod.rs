@@ -119,7 +119,7 @@ pub fn Product() -> impl IntoView {
             ..Default::default()
         };
 
-        // update.dispatch(value);
+        update.dispatch((selected_product.get(), data));
     };
 
     let custom_request = move |file_list: FileList| {};
