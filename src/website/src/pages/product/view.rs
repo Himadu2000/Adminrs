@@ -58,7 +58,7 @@ where
             <Toggle state=data.state set_state=data.set_state/>
 
             <Upload multiple custom_request=move |file_list: FileList| {}>
-        <UploadDragger><p class="bg-blue-800">"Click or drag a file to this area to upload"</UploadDragger>
+        <UploadDragger><p class="bg-blue-800">"Click or drag a file to this area to upload"</p></UploadDragger>
     </Upload>
                     </div>
                  })
