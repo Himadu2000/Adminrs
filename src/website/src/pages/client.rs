@@ -24,7 +24,7 @@ where
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
         .header("Authorization", flag.get_untracked())
-        .header("store_id", store_id)
+        .header("store_id", store_id.get().unwrap())
         .send()
         .await
         .unwrap()
