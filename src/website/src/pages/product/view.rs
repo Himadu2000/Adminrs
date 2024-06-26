@@ -12,7 +12,7 @@ pub fn View<E1, E2, E3, E4, E5>(
     data: Data,
     events: (E1, E2, E3, E4, E5),
     sub: E1,
-    form: NodeRef<html::Input>,
+    form: NodeRef<html::Form>,
 ) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
