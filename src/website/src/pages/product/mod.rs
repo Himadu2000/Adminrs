@@ -3,7 +3,7 @@ mod data;
 mod query;
 mod view;
 
-use crate::pages::client::{client, MutationBuilder, QueryBuilder};
+use crate::pages::client::{client, upload_client, MutationBuilder, QueryBuilder};
 use data::Data;
 use js_sys::Uint8Array;
 use leptos::*;
