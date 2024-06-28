@@ -173,7 +173,7 @@ pub fn Product() -> impl IntoView {
 
                     let part = Part::bytes(bytes)
                         .file_name(file.name())
-                        .mime_str(mime.as_str())
+                        .mime_str(&mime)
                         .expect("Part");
 
                     (index.to_string(), part)
