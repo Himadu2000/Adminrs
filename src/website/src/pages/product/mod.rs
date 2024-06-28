@@ -5,6 +5,7 @@ mod view;
 
 use crate::pages::client::{client, MutationBuilder, QueryBuilder};
 use data::Data;
+use js_sys::Uint8Array;
 use leptos::*;
 use leptos_router::{use_params, Params};
 use log::info;
@@ -16,10 +17,10 @@ use query::{
     input::ProductInput,
     UnnamedQuery, Variables,
 };
+use reqwest::multipart::{Form, Part};
 use std::collections::HashMap;
 use thaw::FileList;
 use view::View;
-use reqwest::multipart::{Form,Part};
 
 #[derive(Params, PartialEq)]
 struct ProductParams {
