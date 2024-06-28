@@ -31,8 +31,9 @@ pub fn TextInput(
 pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
-    on_submit: E1,
     custom_request: E2,
+    on_submit: Action<(), ()>,
+    upload: Action<(FileList, Option<u8>), ()>,
 ) -> impl IntoView
 where
     E1: Fn(SubmitEvent) + 'static,
@@ -71,7 +72,7 @@ where
 
             <Toggle state=data.state set_state=data.set_state/>
 
-            <Upload multiple=true custom_request=move |file_list: FileList| {}>
+            <Upload multiple=true custom_request=move |file_list| {upload.dispatch((file_list,None));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p></UploadDragger>
     </Upload>
                     </div>
