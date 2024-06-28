@@ -167,12 +167,12 @@ pub fn Product() -> impl IntoView {
                     let mut bytes = Vec::new();
                     Uint8Array::new(&file).copy_to(&mut bytes);
 
-                    let mime = file.name();
-                    let mime = mime.split('.').last().unwrap_or_default();
+                    let file_name = file.name();
+                    let mime = file_name.split('.').last().unwrap_or_default();
                     let mime = format!("image/{}", mime);
 
                     let part = Part::bytes(bytes)
-                        .file_name(file.name())
+                        .file_name(file_name)
                         .mime_str(&mime)
                         .expect("Part");
 
