@@ -45,10 +45,7 @@ where
         .data
 }
 
-pub async fn upload_client<UnnamedQuery>(form: Form) -> String
-where
-    UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
-{
+pub async fn upload_client(form: Form) -> String {
     let (store_id, _) = create_signal(var("STORE_ID"));
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
     let (local_store_id, set_store_id, _) =
