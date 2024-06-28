@@ -182,15 +182,7 @@ pub fn Product() -> impl IntoView {
                     accumulator.part(index, part)
                 });
 
-            let res = reqwest::Client::new()
-                .post("http://127.0.0.1:8000/graphql")
-                .multipart(list)
-                .send()
-                .await
-                .unwrap()
-                .text()
-                .await
-                .unwrap();
+            let res = upload_client(list).await;
 
             info!("{:?}", res);
         }
