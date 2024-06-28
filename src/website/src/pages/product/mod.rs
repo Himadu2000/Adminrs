@@ -154,7 +154,7 @@ pub fn Product() -> impl IntoView {
         let files = input.to_owned().0;
 
         async move {
-            let form=   Form::new()
+            let form = Form::new()
             .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
             .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
