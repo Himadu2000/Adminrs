@@ -3734,6 +3734,7 @@ dependencies = [
  "cynic",
  "cynic-codegen",
  "http 1.1.0",
+ "js-sys",
  "leptonic",
  "leptos",
  "leptos-struct-table",
