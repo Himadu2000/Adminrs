@@ -150,6 +150,53 @@ pub fn Product() -> impl IntoView {
         update.dispatch((selected_product.get(), data));
     });
 
+    let upload = create_action(move |input: &(FileList, Option<u8>)| {
+        let files = input.to_owned().0;
+
+        async move {
+            let form=   Form::new()
+            .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
+            .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
+
+            let list: Vec<u32> = (0..files.length()).collect();
+
+            let list = list
+                .iter()
+                .map(|index| {
+                    let file = files.item(*index).expect("File");
+
+                    let mut bytes = Vec::new();
+                    Uint8Array::new(&file).copy_to(&mut bytes);
+
+                    let part = Part::bytes(bytes)
+                        .file_name(file.name())
+                        .mime_str(
+                            format!(
+                                "image/{}",
+                                file.name().split('.').last().unwrap_or_default()
+                            )
+                            .as_str(),
+                        )
+                        .expect("Part");
+
+                    (index.to_string(), part)
+                })
+                .fold(form, |accumulator, e| accumulator.part(e.0, e.1));
+
+            let res = reqwest::Client::new()
+                .post("http://127.0.0.1:8000/graphql")
+                .multipart(list)
+                .send()
+                .await
+                .unwrap()
+                .text()
+                .await
+                .unwrap();
+
+            info!("{:?}", res);
+        }
+    });
+
     view! {
         <View data=data form_values=form_values on_submit=update_action upload=upload />
     }
