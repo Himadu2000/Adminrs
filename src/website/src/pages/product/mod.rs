@@ -158,9 +158,8 @@ pub fn Product() -> impl IntoView {
             .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
             .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
-            let list: Vec<u32> = (0..files.length()).collect();
-
-            let list = list
+            let list = (0..files.length())
+                .collect::<Vec<u32>>()
                 .iter()
                 .map(|index| {
                     let file = files.item(*index).expect("File");
@@ -168,20 +167,20 @@ pub fn Product() -> impl IntoView {
                     let mut bytes = Vec::new();
                     Uint8Array::new(&file).copy_to(&mut bytes);
 
+                    let mime = file.name();
+                    let mime = mime.split('.').last().unwrap_or_default();
+                    let mime = format!("image/{}", mime);
+
                     let part = Part::bytes(bytes)
                         .file_name(file.name())
-                        .mime_str(
-                            format!(
-                                "image/{}",
-                                file.name().split('.').last().unwrap_or_default()
-                            )
-                            .as_str(),
-                        )
+                        .mime_str(mime.as_str())
                         .expect("Part");
 
                     (index.to_string(), part)
                 })
-                .fold(form, |accumulator, e| accumulator.part(e.0, e.1));
+                .fold(form, |accumulator, (index, part)| {
+                    accumulator.part(index, part)
+                });
 
             let res = reqwest::Client::new()
                 .post("http://127.0.0.1:8000/graphql")
