@@ -19,6 +19,7 @@ use query::{
 use std::collections::HashMap;
 use thaw::FileList;
 use view::View;
+use reqwest::multipart::{Form,Part};
 
 #[derive(Params, PartialEq)]
 struct ProductParams {
