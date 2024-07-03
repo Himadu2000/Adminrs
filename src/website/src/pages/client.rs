@@ -16,8 +16,6 @@ where
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
     let (store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
-    set_store_id.set(store_id_env);
-
     Client::new()
         .post("http://127.0.0.1:8000/graphql")
         .json(&operation)
