@@ -13,7 +13,6 @@ pub async fn client<UnnamedQuery>(operation: impl Serialize) -> Option<UnnamedQu
 where
     UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
 {
-    let (store_id, _) = create_signal(var("STORE_ID"));
     let (flag, _, _) = use_local_storage::<String, FromToStringCodec>("token");
     let (local_store_id, set_store_id, _) =
         use_local_storage::<String, FromToStringCodec>("store_id");
