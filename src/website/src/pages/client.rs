@@ -77,7 +77,7 @@ pub async fn upload_client(form: Form) -> String {
         .unwrap()
 }
 
-//? Following   
+//? Following is an example how store could get store_id from env, not needed in admin.
 pub async fn _env_client<UnnamedQuery>(operation: impl Serialize) -> Option<UnnamedQuery>
 where
     UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
