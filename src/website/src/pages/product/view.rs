@@ -52,7 +52,9 @@ where
             data.product.get()
                 .map(|product| view! {
                     <div>
-                    <form on:submit=move |file_list|{}>
+                    <form on:submit=move |file_list|{
+                        ev.prevent_default();
+                        on_submit.dispatch(());}>
 
                 <TextInput input=form_values input_type="text" placeholder="Enter Product name *" name="name" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
                 <TextInput input=form_values input_type="text" placeholder="Enter Slug" name="slug" class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
