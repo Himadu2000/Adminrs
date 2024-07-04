@@ -8,18 +8,6 @@ input AttributeInput {
   value: String!
 }
 
-type Dimensions {
-  length: Float!
-  width: Float!
-  height: Float!
-}
-
-input DimensionsInput {
-  length: Float!
-  width: Float!
-  height: Float!
-}
-
 input Filter {
   active: Boolean
   discontinued: Boolean
@@ -33,14 +21,12 @@ input Filter {
 }
 
 type Image {
-  alt: String
-  position: Int!
+  alt: String!
   file: String!
 }
 
 input ImageInput {
-  alt: String
-  position: Int!
+  alt: String!
 }
 
 type Mutation {
@@ -49,8 +35,8 @@ type Mutation {
   login(email: String!): String!
   createStore(data: StoreInput!): [StoreRecord!]!
   createProduct(data: ProductInput!): [ProductRecord!]!
-  updateProduct(id: String!, data: ProductInput!, images: [Upload!], deleteImageIndex: Int): ProductRecord
-  deleteProduct(id: String!): ProductRecord
+  updateProduct(id: ID!, data: ProductInput!, images: [Upload!], deleteImageIndex: Int): ProductRecord
+  deleteProduct(id: ID!): ProductRecord
 }
 
 """
@@ -87,85 +73,49 @@ enum ProductFilterStockStatus {
 }
 
 input ProductInput {
-  images: [ImageInput!]! = []
-  dimensions: DimensionsInput
-  name: String
-  description: String
-  metaDescription: String
-  metaTitle: String
-  tags: [String!]! = []
-  attributes: [AttributeInput!]! = []
-  enabled: Boolean! = false
-  discontinued: Boolean! = false
-  slug: String
-  sku: String
-  code: String
-  taxClass: String
-  prices: [Float!]! = []
-  costPrice: Float
+  name: String! = ""
+  description: String! = ""
+  slug: String! = ""
+  metaTitle: String! = ""
+  metaDescription: String! = ""
   regularPrice: Float! = 0.0
-  salePrice: Float
-  quantityInc: Int! = 0
-  quantityMin: Int! = 0
-  weight: Float
+  salePrice: Float! = 0.0
+  sku: String! = ""
   stockQuantity: Int! = 0
-  position: Int! = 0
+  weight: Float! = 0.0
   stockTracking: Boolean! = false
   stockPreorder: Boolean! = false
   stockBackorder: Boolean! = false
-  options: [ProductOptionInput!]! = []
+  discontinued: Boolean! = false
+  enabled: Boolean! = false
+  attributes: [AttributeInput!]! = []
   variants: [VariantInput!]! = []
-}
-
-type ProductOption {
-  name: String!
-  control: ProductOptionControl!
-  required: Boolean!
-  position: Int!
-  values: [Value!]!
-}
-
-enum ProductOptionControl {
-  SELECT
-}
-
-input ProductOptionInput {
-  name: String!
-  control: ProductOptionControl!
-  required: Boolean!
-  position: Int!
-  values: [ValueInput!]!
+  tags: [String!]! = []
+  position: Int! = 0
+  images: [ImageInput!]! = []
 }
 
 type ProductRecord {
-  images: [Image!]!
-  dimensions: Dimensions
-  name: String
-  description: String
-  metaDescription: String
-  metaTitle: String
-  tags: [String!]!
-  attributes: [Attribute!]!
-  enabled: Boolean!
-  discontinued: Boolean!
-  slug: String
-  sku: String
-  code: String
-  taxClass: String
-  prices: [Float!]!
-  costPrice: Float
+  name: String!
+  description: String!
+  slug: String!
+  metaTitle: String!
+  metaDescription: String!
   regularPrice: Float!
-  salePrice: Float
-  quantityInc: Int!
-  quantityMin: Int!
-  weight: Float
+  salePrice: Float!
+  sku: String!
   stockQuantity: Int!
-  position: Int!
+  weight: Float!
   stockTracking: Boolean!
   stockPreorder: Boolean!
   stockBackorder: Boolean!
-  options: [ProductOption!]!
+  discontinued: Boolean!
+  enabled: Boolean!
+  attributes: [Attribute!]!
   variants: [Variant!]!
+  tags: [String!]!
+  position: Int!
+  images: [Image!]!
   dateStockExpected: String!
   dateSaleFrom: String!
   dateSaleTo: String!
@@ -205,7 +155,7 @@ type Query {
   status: String!
   license: String!
   stores: String!
-  getProduct(id: String!): ProductRecord!
+  getProduct(id: ID!): ProductRecord!
   getProducts(after: String, before: String, first: Int, last: Int, filter: Filter): ProductRecordConnection!
 }
 
@@ -221,26 +171,18 @@ type StoreRecord {
 
 scalar Upload
 
-type Value {
-  name: String!
-}
-
-input ValueInput {
-  name: String!
-}
-
 type Variant {
-  sku: String
+  sku: String!
   price: Float!
   stockQuantity: Int!
-  weight: Float
+  weight: Float!
   options: String!
 }
 
 input VariantInput {
-  sku: String
+  sku: String!
   price: Float!
   stockQuantity: Int!
-  weight: Float
+  weight: Float!
 }
 
