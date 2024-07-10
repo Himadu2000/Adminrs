@@ -139,6 +139,7 @@ pub fn Product() -> impl IntoView {
         state,
         set_state,
         product: response,
+        products: response,
     };
 
     let update_action = create_action(move |_input: &()| async move {
