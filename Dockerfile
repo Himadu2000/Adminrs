@@ -7,9 +7,11 @@ COPY ./main ./main
 
 RUN apt update && apt install curl -y
 
-EXPOSE 8000
+EXPOSE 3000
 
-HEALTHCHECK --interval=10s --start-period=20s CMD curl -f http://localhost:8000/graphql || exit 1
+ENV LEPTOS_SITE_ADDR=0.0.0.0:3000
+
+HEALTHCHECK --interval=10s --start-period=20s CMD curl -f http://localhost:3000 || exit 1
 
 CMD ./main
 
