@@ -20,12 +20,9 @@ input Filter {
   sort: ProductFilterSort
 }
 
-type Image {
-  alt: String!
+type ImageOutput {
   file: String!
-}
-
-input ImageInput {
+  mime: String!
   alt: String!
 }
 
@@ -92,7 +89,17 @@ input ProductInput {
   variants: [VariantInput!]! = []
   tags: [String!]! = []
   position: Int! = 0
-  images: [ImageInput!]! = []
+}
+
+enum ProductOptionControl {
+  SELECT
+}
+
+input ProductOptionInput {
+  name: String!
+  control: ProductOptionControl!
+  required: Boolean!
+  values: [String!]!
 }
 
 type ProductRecord {
@@ -115,11 +122,11 @@ type ProductRecord {
   variants: [Variant!]!
   tags: [String!]!
   position: Int!
-  images: [Image!]!
   dateStockExpected: String!
   dateSaleFrom: String!
   dateSaleTo: String!
-  id: String!
+  id: ID!
+  images: [ImageOutput!]!
 }
 
 type ProductRecordConnection {
@@ -176,7 +183,7 @@ type Variant {
   price: Float!
   stockQuantity: Int!
   weight: Float!
-  options: String!
+  options: [VariantOption!]!
 }
 
 input VariantInput {
@@ -184,5 +191,13 @@ input VariantInput {
   price: Float!
   stockQuantity: Int!
   weight: Float!
+  options: [ProductOptionInput!]!
+}
+
+type VariantOption {
+  name: String!
+  control: ProductOptionControl!
+  required: Boolean!
+  values: [String!]!
 }
 
