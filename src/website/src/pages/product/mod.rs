@@ -152,13 +152,13 @@ pub fn Product() -> impl IntoView {
         ev.prevent_default();
     };
 
-    let _custom_request = move |file_list: FileList| {};
+    let _custom_request = move |_file_list: FileList| {};
 
     let data = Data {
         state,
         set_state,
-        product: response,
-        products: response,
+        product: product_response,
+        products: products_response,
     };
 
     view! {
