@@ -15,11 +15,11 @@ use std::collections::HashMap;
 use thaw::FileList;
 
 pub async fn get_product(
-    selected_product: ReadSignal<i8>,
+    selected_product: ReadSignal<String>,
     form_values: RwSignal<HashMap<String, String>>,
 ) {
     let variables = Variables {
-        id: selected_product.get().to_string().into(),
+        id: selected_product.get().into(),
     };
 
     let data = client::<UnnamedQuery>(UnnamedQuery::build(variables))
@@ -78,7 +78,7 @@ pub async fn delete_product(product: &ProductInput) {
         .id;
 }
 
-pub async fn upload_file(files: FileList) {
+pub async fn upload_files(files: FileList) {
     let form = Form::new()
     .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
     .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
