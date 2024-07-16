@@ -1,9 +1,10 @@
-FROM docker.io/debian:bookworm-slim
+FROM rustlang/rust:nightly-alpine
 
 WORKDIR /app
 
 ## copy the main binary
 COPY ./main ./main
+COPY ./target/site ./target/site
 
 RUN apt update && apt install curl -y
 
