@@ -10,6 +10,7 @@ use js_sys::Uint8Array;
 use leptos::*;
 use leptos_router::{use_params, Params};
 use log::info;
+use process::{create_product, delete_product, get_product, update_product, upload_files};
 use query::{
     crud::{
         CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
