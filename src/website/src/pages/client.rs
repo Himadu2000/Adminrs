@@ -9,6 +9,8 @@ use std::env::var;
 
 pub use cynic::{MutationBuilder, QueryBuilder};
 
+pub const URL: &str = "http://server.cezerin.ansiglobal.com/graphql";
+
 pub async fn client<UnnamedQuery>(operation: impl Serialize) -> Option<UnnamedQuery>
 where
     UnnamedQuery: QueryFragment + for<'a> Deserialize<'a>,
@@ -17,7 +19,7 @@ where
     let (store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
     Client::new()
-        .post("http://127.0.0.1:8000/graphql")
+        .post(URL)
         .json(&operation)
         .header("Authorization", flag.get_untracked())
         .header("store_id", store_id.get_untracked())
@@ -35,7 +37,7 @@ pub async fn upload_client(form: Form) -> String {
     let (store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
     Client::new()
-        .post("http://127.0.0.1:8000/graphql")
+        .post(URL)
         .multipart(form)
         .header("Authorization", flag.get_untracked())
         .header("store_id", store_id.get_untracked())
@@ -66,7 +68,7 @@ where
     set_store_id.set(store_id_env);
 
     Client::new()
-        .post("http://127.0.0.1:8000/graphql")
+        .post(URL)
         .json(&operation)
         .header("Authorization", flag.get_untracked())
         .header(
