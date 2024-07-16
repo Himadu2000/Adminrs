@@ -14,7 +14,7 @@ pub fn TextInput(
     input_type: &'static str,
     placeholder: &'static str,
     name: &'static str,
-    class: &'static str,
+    // class: &'static str,
 ) -> impl IntoView {
     view! {
         <input type="text"
