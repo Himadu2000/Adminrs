@@ -18,7 +18,7 @@ pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
     custom_request: E2,
-    on_submit: Action<(), ()>,
+    on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
     upload: Action<(FileList, Option<u8>), ()>,
 ) -> impl IntoView
 where
