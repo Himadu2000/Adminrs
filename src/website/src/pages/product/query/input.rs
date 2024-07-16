@@ -2,70 +2,38 @@ use crate::pages::schema;
 
 #[derive(Clone, cynic::InputObject, Debug, Default)]
 pub struct ProductInput {
-    pub attributes: Vec<AttributeInput>,
-    pub code: Option<String>,
-    pub cost_price: Option<f64>,
-    pub description: Option<String>,
-    pub dimensions: Option<DimensionsInput>,
+    pub name: String,
+    pub description: String,
+    pub slug: String,
+    pub meta_title: String,
+    pub meta_description: String,
+    pub regular_price: f64,
+    pub sale_price: f64,
+    // pub date_sale_from: Datetime,
+    // pub date_sale_to: Datetime,
+    pub sku: String,
+    pub stock_quantity: i32,
+    pub weight: f64,
+    // pub date_stock_expected: Datetime,
+    pub stock_tracking: bool,
+    pub stock_preorder: bool,
+    pub stock_backorder: bool,
     pub discontinued: bool,
     pub enabled: bool,
-    pub images: Vec<ImageInput>,
-    pub meta_description: Option<String>,
-    pub meta_title: Option<String>,
-    pub name: Option<String>,
-    pub options: Vec<ProductOptionInput>,
-    pub position: i32,
-    pub prices: Vec<f64>,
-    pub quantity_inc: i32,
-    pub quantity_min: i32,
-    pub regular_price: f64,
-    pub sale_price: Option<f64>,
-    pub sku: Option<String>,
-    pub slug: Option<String>,
-    pub stock_backorder: bool,
-    pub stock_preorder: bool,
-    pub stock_quantity: i32,
-    pub stock_tracking: bool,
+    pub attributes: Vec<AttributeInput>,
+    // pub variants: Vec<VariantInput>,
+    // pub category_ids: Vec<Thing>,
     pub tags: Vec<String>,
-    pub tax_class: Option<String>,
-    pub variants: Vec<VariantInput>,
-    pub weight: Option<f64>,
-}
-
-#[derive(Clone, cynic::InputObject, Debug)]
-pub struct VariantInput {
-    pub price: f64,
-    pub sku: Option<String>,
-    pub stock_quantity: i32,
-    pub weight: Option<f64>,
-}
-
-#[derive(Clone, cynic::InputObject, Debug)]
-pub struct ProductOptionInput {
-    pub control: ProductOptionControl,
-    pub name: String,
     pub position: i32,
-    pub required: bool,
-    pub values: Vec<ValueInput>,
+    // pub related_products: Vec<Thing>,
+    // pub images: Vec<ImageInput>,
 }
 
-#[derive(Clone, cynic::InputObject, Debug)]
-pub struct ValueInput {
-    pub name: String,
-}
-
-#[derive(Clone, cynic::InputObject, Debug)]
-pub struct ImageInput {
-    pub alt: Option<String>,
-    pub position: i32,
-}
-
-#[derive(Clone, cynic::InputObject, Debug)]
-pub struct DimensionsInput {
-    pub height: f64,
-    pub length: f64,
-    pub width: f64,
-}
+// #[derive(Clone, cynic::InputObject, Debug)]
+// pub struct ImageInput {
+//     pub alt: String,
+//     pub file: String,
+// }
 
 #[derive(Clone, cynic::InputObject, Debug)]
 pub struct AttributeInput {
@@ -76,4 +44,21 @@ pub struct AttributeInput {
 #[derive(cynic::Enum, Clone, Copy, Debug)]
 pub enum ProductOptionControl {
     Select,
+}
+
+#[derive(Clone, cynic::InputObject, Debug)]
+pub struct ProductOptionInput {
+    pub name: String,
+    pub control: ProductOptionControl,
+    pub required: bool,
+    pub values: Vec<String>,
+}
+
+#[derive(Clone, cynic::InputObject, Debug)]
+pub struct VariantInput {
+    pub sku: String,
+    pub price: f64,
+    pub stock_quantity: i32,
+    pub weight: f64,
+    pub options: Vec<ProductOptionInput>,
 }
