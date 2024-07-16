@@ -19,15 +19,14 @@ pub async fn get_product(
     form_values: RwSignal<HashMap<String, String>>,
 ) -> Option<ProductRecord> {
     let variables = Variables {
-        id: selected_product.get().into(),
+        id: selected_product.into(),
     };
 
     let data = client::<UnnamedQuery>(UnnamedQuery::build(variables)).await;
 
-    if let Some(with_product) = data {
-        let with_product = with_product.get_product;
-        let data_product = data.clone();
-
+    if let Some(with_data) = data {
+        let with_data = with_data.get_product;
+        let data_product = with_data.clone();
         form_values.update(|values| {
             values.insert(String::from("name"), data_product.name);
             values.insert(String::from("slug"), data_product.slug);
@@ -39,7 +38,7 @@ pub async fn get_product(
             values.insert(String::from("description"), data_product.description);
         });
 
-        Some(with_product)
+        return Some(with_data);
     }
 
     None
