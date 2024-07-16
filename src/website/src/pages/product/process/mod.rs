@@ -15,11 +15,11 @@ use std::collections::HashMap;
 use thaw::FileList;
 
 pub async fn get_product(
-    selected_product: ReadSignal<String>,
+    selected_product: String,
     form_values: RwSignal<HashMap<String, String>>,
 ) -> Option<ProductRecord> {
     let variables = Variables {
-        id: selected_product.get().into(),
+        id: selected_product.into(),
     };
 
     let data = client::<UnnamedQuery>(UnnamedQuery::build(variables)).await;
