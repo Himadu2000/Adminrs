@@ -9,6 +9,7 @@ use data::Data;
 use js_sys::Uint8Array;
 use leptos::*;
 use leptos_router::{use_params, Params};
+use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
 use log::info;
 use process::{create_product, delete_product, get_product, update_product, upload_files};
 use query::{
@@ -34,8 +35,9 @@ pub fn Product() -> impl IntoView {
     let (selected_product, set_selected_product) = create_signal::<String>(String::new());
     let form_values = create_rw_signal::<HashMap<String, String>>(HashMap::new());
     let (state, set_state) = create_signal(false);
+    let (store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
-    let id = move || {
+    let _id = move || {
         use_params::<ProductParams>().with(|params| {
             params
                 .as_ref()
