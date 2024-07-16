@@ -4,13 +4,9 @@ mod text;
 use super::data::Data;
 use form::Form;
 use leptonic::toggle::Toggle;
-use leptos::{
-    ev::{MouseEvent, SubmitEvent},
-    *,
-};
+use leptos::{ev::SubmitEvent, *};
 use leptos_meta::*;
 use std::collections::HashMap;
-use text::TextInput;
 use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
