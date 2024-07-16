@@ -35,7 +35,7 @@ pub fn Product() -> impl IntoView {
     let (selected_product, set_selected_product) = create_signal::<String>(String::new());
     let form_values = create_rw_signal::<HashMap<String, String>>(HashMap::new());
     let (state, set_state) = create_signal(false);
-    let (store_id, _, _) = use_local_storage::<String, FromToStringCodec>("store_id");
+    let (_, set_store_id, _) = use_local_storage::<String, FromToStringCodec>("store_id");
 
     let _id = move || {
         use_params::<ProductParams>().with(|params| {
