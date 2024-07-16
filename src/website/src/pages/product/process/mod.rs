@@ -83,7 +83,7 @@ pub async fn delete_product(product: &ProductInput) {
 
 pub async fn upload_files(files: FileList) {
     let form = Form::new()
-    .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
+    .text("operations", format!("{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;30amj7a97zfbvi5rqxv2&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",).replace('\'', "\""))
     .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
     let list = (0..files.length())
