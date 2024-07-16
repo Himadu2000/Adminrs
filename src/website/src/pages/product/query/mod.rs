@@ -2,99 +2,68 @@ pub mod crud;
 pub mod input;
 
 use crate::pages::schema;
+use cynic::{Id, QueryFragment, QueryVariables};
 use serde::Serialize;
 
-#[derive(cynic::QueryVariables)]
+#[derive(QueryVariables)]
 pub struct Variables {
-    pub id: String,
+    pub id: Id,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(QueryFragment, Debug)]
 #[cynic(graphql_type = "Query", variables = "Variables")]
 pub struct UnnamedQuery {
     #[arguments(id: $id)]
     pub get_product: ProductRecord,
 }
 
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
+#[derive(Clone, QueryFragment, Debug, Serialize)]
 pub struct ProductRecord {
-    pub attributes: Vec<Attribute>,
-    pub code: Option<String>,
-    pub cost_price: Option<f64>,
-    pub date_sale_from: String,
-    pub date_sale_to: String,
-    pub date_stock_expected: String,
-    pub description: Option<String>,
-    pub dimensions: Option<Dimensions>,
+    pub name: String,
+    pub description: String,
+    pub slug: String,
+    pub meta_title: String,
+    pub meta_description: String,
+    pub regular_price: f64,
+    pub sale_price: f64,
+    // pub date_sale_from: Datetime,
+    // pub date_sale_to: Datetime,
+    pub sku: String,
+    pub stock_quantity: i32,
+    pub weight: f64,
+    // pub date_stock_expected: Datetime,
+    pub stock_tracking: bool,
+    pub stock_preorder: bool,
+    pub stock_backorder: bool,
     pub discontinued: bool,
     pub enabled: bool,
-    pub images: Vec<Image>,
-    pub meta_description: Option<String>,
-    pub meta_title: Option<String>,
-    pub name: Option<String>,
-    pub options: Vec<ProductOption>,
-    pub position: i32,
-    pub prices: Vec<f64>,
-    pub quantity_inc: i32,
-    pub quantity_min: i32,
-    pub regular_price: f64,
-    pub sale_price: Option<f64>,
-    pub sku: Option<String>,
-    pub slug: Option<String>,
-    pub stock_backorder: bool,
-    pub stock_preorder: bool,
-    pub stock_quantity: i32,
-    pub stock_tracking: bool,
+    pub attributes: Vec<Attribute>,
+    // pub variants: Vec<VariantInput>,
+    // pub category_ids: Vec<Thing>,
     pub tags: Vec<String>,
-    pub tax_class: Option<String>,
-    pub variants: Vec<Variant>,
-    pub weight: Option<f64>,
-}
-
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct Variant {
-    pub options: String,
-    pub price: f64,
-    pub sku: Option<String>,
-    pub stock_quantity: i32,
-    pub weight: Option<f64>,
-}
-
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct ProductOption {
-    pub control: ProductOptionControl,
-    pub name: String,
     pub position: i32,
-    pub required: bool,
-    pub values: Vec<Value>,
+    // pub related_products: Vec<Thing>,
+    pub images: Vec<ImageOutput>,
 }
 
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct Value {
-    pub name: String,
-}
-
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct Image {
-    pub alt: Option<String>,
+#[derive(Clone, QueryFragment, Debug, Serialize)]
+pub struct ImageOutput {
     pub file: String,
-    pub position: i32,
+    pub mime: String,
+    pub alt: String,
 }
 
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
-pub struct Dimensions {
-    pub height: f64,
-    pub length: f64,
-    pub width: f64,
-}
-
-#[derive(Clone, cynic::QueryFragment, Debug, Serialize)]
+#[derive(Clone, QueryFragment, Debug, Serialize)]
 pub struct Attribute {
     pub name: String,
     pub value: String,
 }
 
-#[derive(cynic::Enum, Clone, Copy, Debug)]
-pub enum ProductOptionControl {
-    Select,
+#[derive(Clone, QueryFragment, Debug, Serialize)]
+pub struct Variant {
+    pub sku: String,
+    pub price: f64,
+    pub stock_quantity: i32,
+    pub weight: f64,
+    // pub options: Vec<VariantOption>,
 }
