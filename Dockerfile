@@ -6,7 +6,7 @@ WORKDIR /app
 # COPY ./main ./main
 # COPY ./target/site ./target/site
 
-RUN apt update && apt install curl -y
+RUN apk update && apk add curl
 
 EXPOSE 3000
 
