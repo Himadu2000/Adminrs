@@ -32,8 +32,7 @@ struct ProductParams {
 #[island]
 pub fn Product() -> impl IntoView {
     let (value, set_value) = create_signal::<i8>(0);
-    let (selected_product, set_selected_product) =
-        create_signal::<String>(String::from("jduohkgejwv7xfdpyh7e"));
+    let (selected_product, set_selected_product) = create_signal::<String>(String::new());
     let form_values = create_rw_signal::<HashMap<String, String>>(HashMap::new());
     let (state, set_state) = create_signal(false);
 
