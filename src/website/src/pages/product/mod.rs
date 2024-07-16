@@ -99,21 +99,6 @@ pub fn Product() -> impl IntoView {
         }
     });
 
-    let form: NodeRef<html::Form> = create_node_ref();
-
-    let on_submit = move |ev: leptos::ev::SubmitEvent| {
-        ev.prevent_default();
-    };
-
-    let custom_request = move |file_list: FileList| {};
-
-    let data = Data {
-        state,
-        set_state,
-        product: response,
-        products: response,
-    };
-
     let update_action = create_action(move |_input: &()| async move {
         let data = ProductInput {
             name: form_values.get().get(&String::from("name")).cloned(),
@@ -160,6 +145,21 @@ pub fn Product() -> impl IntoView {
             info!("{:?}", res);
         }
     });
+
+    let _form: NodeRef<html::Form> = create_node_ref();
+
+    let _on_submit = move |ev: leptos::ev::SubmitEvent| {
+        ev.prevent_default();
+    };
+
+    let _custom_request = move |file_list: FileList| {};
+
+    let data = Data {
+        state,
+        set_state,
+        product: response,
+        products: response,
+    };
 
     view! {
         <View data=data form_values=form_values on_submit=update_action upload=upload />
