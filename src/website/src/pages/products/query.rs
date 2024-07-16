@@ -1,18 +1,23 @@
 use crate::pages::schema;
-use cynic::QueryFragment;
+use cynic::{Id, QueryFragment};
 
-#[derive(cynic::QueryFragment, Debug)]
+#[derive(QueryFragment, Debug)]
 #[cynic(graphql_type = "Query")]
 pub struct MyQuery {
-    pub get_products: IntConnection,
+    pub get_products: ProductRecordConnection,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
-pub struct IntConnection {
-    pub edges: Vec<IntEdge>,
+#[derive(QueryFragment, Debug)]
+pub struct ProductRecordConnection {
+    pub edges: Vec<ProductRecordEdge>,
 }
 
-#[derive(cynic::QueryFragment, Debug)]
-pub struct IntEdge {
-    pub node: i32,
+#[derive(QueryFragment, Debug)]
+pub struct ProductRecordEdge {
+    pub node: ProductRecord,
+}
+
+#[derive(QueryFragment, Debug)]
+pub struct ProductRecord {
+    pub id: Id,
 }
