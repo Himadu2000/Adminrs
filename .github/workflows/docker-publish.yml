@@ -57,6 +57,9 @@ jobs:
       - name: Move
         run: mv target/aarch64-unknown-linux-gnu/release/website ./main
 
+      - name: Move
+        run: mv target/aarch64-unknown-linux-gnu/site ./target/site
+
       - name: Run tests
         run: cargo test --verbose
 
