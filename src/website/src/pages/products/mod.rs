@@ -17,15 +17,18 @@ pub fn Products() -> impl IntoView {
     let response = create_resource(
         || (),
         |_| async move {
-            client::<MyQuery>(MyQuery::build(()))
-                .await
-                .unwrap()
-                .get_products
-                .edges
-                .first()
-                .unwrap()
-                .node
-                .to_string()
+            <cynic::Id as Clone>::clone(
+                &client::<MyQuery>(MyQuery::build(()))
+                    .await
+                    .unwrap()
+                    .get_products
+                    .edges
+                    .first()
+                    .unwrap()
+                    .node
+                    .id,
+            )
+            .into_inner()
         },
     );
 
