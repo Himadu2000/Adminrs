@@ -108,7 +108,6 @@ pub fn Product() -> impl IntoView {
     let custom_request = move |file_list: FileList| {};
 
     let data = Data {
-        value,
         state,
         set_state,
         product: response,
