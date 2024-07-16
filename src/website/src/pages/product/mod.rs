@@ -48,9 +48,7 @@ pub fn Product() -> impl IntoView {
 
     let response = create_local_resource(
         || selected_product.get(),
-        move |id| async move {
-            get_product(id, form_values).await
-        },
+        move |id| async move { get_product(id, form_values).await },
     );
 
     let create = create_action(move |product: &ProductInput| {
