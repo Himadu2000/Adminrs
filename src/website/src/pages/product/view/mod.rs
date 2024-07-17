@@ -24,7 +24,7 @@ pub fn View(
         <main>
             <div class="bg-gradient-to-tl from-blue-800 to-blue-500 text-white font-mono flex flex-col min-h-screen">
                 <div class="flex flex-row-reverse flex-wrap m-auto">
-                <button on:click=move |_| set_store_id.set(String::from("jv6oowpygz74f36jw7fu")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
+                <button on:click=move |_| set_store_id.set(String::from("mx8v8wibis5wewl4eq62")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
                     "Fondtees.com"
                 </button>
                 <button on:click=move |_| set_store_id.set(String::from("9bgm71tm36t4bq2d5n9w")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
