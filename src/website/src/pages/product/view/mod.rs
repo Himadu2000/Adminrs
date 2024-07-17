@@ -12,7 +12,7 @@ use thaw::{FileList, Upload, UploadDragger};
 pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
-    _create: Action<(), String>,
+    create: Action<(), String>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
     upload: Action<(FileList, Option<u8>), ()>,
     delete: Action<(String, Option<u8>), String>,
@@ -29,6 +29,9 @@ pub fn View(
                 </button>
                 <button on:click=move |_| set_store_id.set(String::from("4h75xs7hl1hep4p6kv4b")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
                     "Varietydoor.com"
+                </button>
+                <button on:click=move |_| create.dispatch(()) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
+                    "Create Product"
                 </button>
                     <Suspense
         fallback=move || view! { <p>"Loading..."</p> }
