@@ -56,13 +56,11 @@ pub fn Product() -> impl IntoView {
         async move { update_product(id, data).await }
     });
 
-    let delete = create_action(
-        move |product: &(String, Option<u8>)| {
-            let product = product.to_owned();
+    let delete = create_action(move |product: &(String, Option<u8>)| {
+        let product = product.to_owned();
 
-            async move { delete_product(product).await }
-        },
-    );
+        async move { delete_product(product).await }
+    });
 
     let update_action = create_action(move |_input: &()| async move {
         let data = ProductInput {
