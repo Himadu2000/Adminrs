@@ -21,6 +21,8 @@ pub fn Form(
                 <TextInput input=values input_type="text" placeholder="Enter Description" name="description"/>
 
                 <TextInput input=values input_type="number" placeholder="Enter Regular price ($)" name="regular_price"/>
+                <TextInput input=values input_type="number" placeholder="Enter Sale price ($)" name="sale_price"/>
+                <TextInput input=values input_type="text" placeholder="Enter SKU" name="sku"/>
                 <TextInput input=values input_type="number" placeholder="Enter Stock quantity" name="stock_quantity"/>
                 <TextInput input=values input_type="number" placeholder="Enter Weight (kg)" name="weight"/>
 
