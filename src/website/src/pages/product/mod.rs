@@ -162,6 +162,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data form_values=form_values on_submit=update_action upload=upload />
+        <View data=data form_values=form_values on_submit=on_submit upload=upload delete=delete set_selected_product=set_selected_product set_store_id=set_store_id />
     }
 }
