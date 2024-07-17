@@ -74,12 +74,14 @@ pub async fn update_product(id: String, data: ProductInput) {
 pub async fn delete_product(product: &ProductInput) {
     let variables = DeleteProductVariables { id: String::new() };
 
-    let token = client::<DeleteProduct>(DeleteProduct::build(variables))
+    client::<DeleteProduct>(DeleteProduct::build(variables))
         .await
         .unwrap()
         .delete_product
         .unwrap()
-        .id;
+        .id
+        .inner()
+        .to_owned()
 }
 
 pub async fn upload_files(files: FileList) {
