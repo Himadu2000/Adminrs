@@ -1,5 +1,5 @@
 mod data;
-pub mod query;
+pub mod process;
 mod view;
 
 use crate::pages::client::{client, QueryBuilder};
