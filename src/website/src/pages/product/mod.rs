@@ -67,10 +67,6 @@ pub fn Product() -> impl IntoView {
     struct FormValue(HashMap<String, String>);
 
     impl FormValue {
-        pub fn new(values: HashMap<String, String>) -> Self {
-            Self(values)
-        }
-
         pub fn get(&self, key: &str) -> String {
             self.0
                 .get(&String::from(key))
