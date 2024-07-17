@@ -63,14 +63,14 @@ jobs:
       - name: Move
         run: mv target/aarch64-unknown-linux-gnu/release/website target/release/website
 
-      - name: Move
-        run: cargo leptos build --release -vv --bin-cargo-args="-h"
+      # - name: Move
+      #   run: cargo leptos build --release -vv --bin-cargo-args="-h"
 
-      - name: Move
-        run: mv target/release/website ./main
+      # - name: Move
+      #   run: mv target/release/website ./main
 
-      - name: Move
-        run: mv target/aarch64-unknown-linux-gnu/site ./target/site
+      # - name: Move
+      #   run: mv target/aarch64-unknown-linux-gnu/site ./target/site
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
