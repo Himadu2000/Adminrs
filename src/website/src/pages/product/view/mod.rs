@@ -18,11 +18,7 @@ pub fn View(
     delete: Action<(String, Option<u8>), String>,
     set_selected_product: WriteSignal<String>,
     set_store_id: WriteSignal<String>,
-) -> impl IntoView
-where
-    E1: Fn(SubmitEvent) + 'static,
-    E2: Fn(FileList) + 'static,
-{
+) -> impl IntoView {
     view! {
         <Title text="Home"/>
         <main>
