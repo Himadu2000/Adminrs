@@ -86,6 +86,19 @@ pub async fn delete_product(product: String) -> String {
         .to_owned()
 }
 
+// let update_action = create_action(move |_input: &()| async move {
+//     let data = ProductInput {
+//         name: form_values
+//             .get()
+//             .get(&String::from("name"))
+//             .cloned()
+//             .unwrap_or_default(),
+//         ..Default::default()
+//     };
+
+//     update.dispatch((selected_product.get_untracked(), data));
+// });
+
 pub async fn upload_files(files: FileList) {
     let form = Form::new()
     .text("operations", format!("{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;30amj7a97zfbvi5rqxv2&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",).replace('\'', "\""))
