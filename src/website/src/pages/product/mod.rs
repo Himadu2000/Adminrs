@@ -4,7 +4,10 @@ mod process;
 mod query;
 mod view;
 
-use crate::pages::client::{client, upload_client, MutationBuilder, QueryBuilder};
+use crate::pages::{
+    client::{client, upload_client, MutationBuilder, QueryBuilder},
+    get_products,
+};
 use data::Data;
 use js_sys::Uint8Array;
 use leptos::*;
@@ -46,27 +49,18 @@ pub fn Product() -> impl IntoView {
         })
     };
 
-    let response = create_local_resource(
+    let product_response = create_local_resource(
         || selected_product.get(),
         move |id| async move { get_product(id, form_values).await },
     );
 
+    let products_response =
+        create_local_resource(|| (), move |_| async move { get_products().await });
+
     let create = create_action(move |product: &ProductInput| {
         let product = product.to_owned();
 
-        async move {
-            let variables = CreateProductVariables { data: product };
-
-            let token = client::<CreateProduct>(CreateProduct::build(variables))
-                .await
-                .unwrap()
-                .create_product
-                .first()
-                .unwrap()
-                .to_owned()
-                .id
-                .clone();
-        }
+        async move { create_product(product).await }
     });
 
     let update = create_action(move |input: &(String, ProductInput)| {
