@@ -1,7 +1,7 @@
 mod client;
 mod home;
 mod login;
-// mod product;
+mod product;
 mod products;
 
 use home::Home;
@@ -9,7 +9,7 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 use login::Login;
-// use product::Product;
+use product::Product;
 use products::Products;
 
 pub use products::process::get_products;
@@ -30,7 +30,7 @@ pub fn App() -> impl IntoView {
             <Routes>
                 <Route path="" view=  move || view! { <Home/> }/>
                 <Route path="/login" view=  move || view! { <Login/> }/>
-                // <Route path="/product/:id" view=  move || view! { <Product/> }/>
+                <Route path="/product/:id" view=  move || view! { <Product/> }/>
                 <Route path="/products" view=  move || view! { <Products/> }/>
             </Routes>
         </Router>
