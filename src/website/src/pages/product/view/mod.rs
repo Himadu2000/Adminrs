@@ -34,7 +34,7 @@ pub fn View(
         fallback=move || view! { <p>"Loading..."</p> }
     >
     <For
-                    each=move || data.products.with(|value| value.unwrap_or_default())
+                    each=move || data.products.with(|value| value.to_owned().unwrap_or_default())
                     key=|product| product.clone()
                     children=move |product| {
                         let producta= product.clone();
