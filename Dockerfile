@@ -3,8 +3,8 @@ FROM rustlang/rust:nightly-alpine
 WORKDIR /app
 
 ## copy the main binary
-# COPY ./main ./main
-# COPY ./target/site ./target/site
+COPY ./main ./main
+COPY ./site ./target/site
 
 RUN apk update && apk add curl
 
