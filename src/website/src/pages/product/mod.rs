@@ -89,8 +89,7 @@ pub fn Product() -> impl IntoView {
 
     let update_action = create_action(
         move |_input: &(RwSignal<HashMap<String, String>>, Option<u8>)| async move {
-            let form_values_copy = form_values.get_untracked().to_owned();
-            let values = FormValue(form_values_copy);
+            let values = FormValue(form_values.get_untracked());
 
             let data = ProductInput {
                 name: values.get("name"),
