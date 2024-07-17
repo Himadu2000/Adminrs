@@ -98,12 +98,12 @@ pub async fn delete_product(product: String) -> String {
 //     update.dispatch((selected_product.get_untracked(), data));
 // });
 
-pub async fn upload_files(files: FileList) {
+pub async fn upload_files(product: String,files: FileList) {
     let form = Form::new()
         .text(
             "operations",
             format!(
-                "{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;30amj7a97zfbvi5rqxv2&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",
+                "{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;{product}&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",
          
             )
             .replace('\'', "\"").replace("&apos;", "\\\""),
