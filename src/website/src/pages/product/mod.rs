@@ -72,31 +72,13 @@ pub fn Product() -> impl IntoView {
     let update = create_action(move |input: &(String, ProductInput)| {
         let (id, data) = input.to_owned();
 
-        async move {
-            let variables = UpdateProductVariables { id, data };
-
-            let token = client::<UpdateProduct>(UpdateProduct::build(variables))
-                .await
-                .unwrap()
-                .update_product
-                .unwrap()
-                .id;
-        }
+        async move { update_product(id, data).await }
     });
 
-    let delete = create_action(move |product: &ProductInput| {
+    let delete = create_action(move |product: &String| {
         let product = product.to_owned();
 
-        async move {
-            let variables = DeleteProductVariables { id: String::new() };
-
-            let token = client::<DeleteProduct>(DeleteProduct::build(variables))
-                .await
-                .unwrap()
-                .delete_product
-                .unwrap()
-                .id;
-        }
+        async move { delete_product(product).await }
     });
 
     let update_action = create_action(move |_input: &()| async move {
