@@ -3,7 +3,6 @@ mod text;
 
 use super::data::Data;
 use form::Form;
-use leptonic::toggle::Toggle;
 use leptos::*;
 use leptos_meta::*;
 use std::collections::HashMap;
@@ -69,8 +68,6 @@ pub fn View(
                 .map(|_product| view! {
                     <div>
                     <Form values=form_values on_submit=on_submit />
-
-            <Toggle state=data.state set_state=data.set_state/>
 
             <Upload multiple=true custom_request=move |file_list| {upload.dispatch((file_list,None));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p></UploadDragger>
