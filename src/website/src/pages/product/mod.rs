@@ -57,7 +57,7 @@ pub fn Product() -> impl IntoView {
     });
 
     let delete = create_action(move |product: &(String, Option<u8>)| {
-        let product = product.to_owned();
+        let (product, _) = product.to_owned();
 
         async move { delete_product(product).await }
     });
