@@ -44,10 +44,10 @@ pub fn Product() -> impl IntoView {
     let products_response =
         create_local_resource(|| (), move |_| async move { get_products().await });
 
-    let create =
-        create_action(
-            move |_input: &()| async move { create_product(ProductInput::default()).await },
-        );
+    let create = create_action(move |_input: &()| async move {
+        create_product(ProductInput::default()).await;
+        products_response.refetch();
+    });
 
     let update = create_action(move |input: &(String, ProductInput)| {
         let (id, data) = input.to_owned();
@@ -58,7 +58,10 @@ pub fn Product() -> impl IntoView {
     let delete = create_action(move |product: &(String, Option<u8>)| {
         let (product, _) = product.to_owned();
 
-        async move { delete_product(product).await }
+        async move {
+            delete_product(product).await;
+            products_response.refetch();
+        }
     });
 
     let update_action = create_action(
