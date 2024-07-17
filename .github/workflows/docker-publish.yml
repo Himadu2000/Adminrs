@@ -52,11 +52,13 @@ jobs:
       - name: Move
         run: rustup target add wasm32-unknown-unknown
 
-      - name: Move
-        run: apt update && apt install podman -y
-
-      - name: Move
-        run: cargo install cross
+      - name: Build binary
+        uses: houseabsolute/actions-rust-cross@v0
+        with:
+          command: build
+          target: aarch64-unknown-linux-gnu
+          args: "-r -h"
+          strip: true
 
       - name: Move
         run: cargo leptos build --release -vv
