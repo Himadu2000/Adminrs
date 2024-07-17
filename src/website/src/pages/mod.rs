@@ -24,6 +24,7 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Stylesheet id="leptos" href="/pkg/website.css"/>
+        <script src="/pkg/website.js" defer />
         <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
         <Router>
             <Routes>
