@@ -44,11 +44,10 @@ pub fn Product() -> impl IntoView {
     let products_response =
         create_local_resource(|| (), move |_| async move { get_products().await });
 
-    let create = create_action(move |product: &ProductInput| {
-        let product = product.to_owned();
-
-        async move { create_product(product).await }
-    });
+    let create =
+        create_action(
+            move |_input: &()| async move { create_product(ProductInput::default()).await },
+        );
 
     let update = create_action(move |input: &(String, ProductInput)| {
         let (id, data) = input.to_owned();
@@ -62,18 +61,20 @@ pub fn Product() -> impl IntoView {
         async move { delete_product(product).await }
     });
 
-    let update_action = create_action(move |_input: &()| async move {
-        let data = ProductInput {
-            name: form_values
-                .get()
-                .get(&String::from("name"))
-                .unwrap()
-                .to_owned(),
-            ..Default::default()
-        };
+    let update_action = create_action(
+        move |_input: &(RwSignal<HashMap<String, String>>, Option<u8>)| async move {
+            let data = ProductInput {
+                name: form_values
+                    .get()
+                    .get(&String::from("name"))
+                    .unwrap()
+                    .to_owned(),
+                ..Default::default()
+            };
 
-        update.dispatch((selected_product.get(), data));
-    });
+            update.dispatch((selected_product.get(), data));
+        },
+    );
 
     let upload = create_action(move |input: &(FileList, Option<u8>)| {
         let files = input.to_owned().0;
@@ -97,6 +98,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data form_values=form_values on_submit=on_submit upload=upload delete=delete set_selected_product=set_selected_product set_store_id=set_store_id />
+        <View data=data form_values=form_values create=create on_submit=update_action upload=upload delete=delete set_selected_product=set_selected_product set_store_id=set_store_id />
     }
 }
