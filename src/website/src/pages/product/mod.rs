@@ -64,14 +64,55 @@ pub fn Product() -> impl IntoView {
         }
     });
 
+    struct FormValue(HashMap<String, String>);
+
+    impl FormValue {
+        pub fn new(values: HashMap<String, String>) -> Self {
+            Self(values)
+        }
+
+        pub fn get(&self, key: &str) -> String {
+            self.0
+                .get(&String::from(key))
+                .unwrap_or(&String::new())
+                .to_owned()
+        }
+
+        pub fn float(&self, key: &str) -> f64 {
+            self.get(key).parse().unwrap_or_default()
+        }
+
+        pub fn int(&self, key: &str) -> i32 {
+            self.get(key).parse().unwrap_or_default()
+        }
+
+        pub fn bool(&self, key: &str) -> bool {
+            self.get(key).parse().unwrap_or_default()
+        }
+    }
+
     let update_action = create_action(
         move |_input: &(RwSignal<HashMap<String, String>>, Option<u8>)| async move {
+            let form_values_copy: HashMap<String, String> = form_values.get_untracked().to_owned();
+            let values = FormValue(form_values_copy);
+
             let data = ProductInput {
-                name: form_values
-                    .get()
-                    .get(&String::from("name"))
-                    .unwrap()
-                    .to_owned(),
+                name: values.get("name"),
+                description: values.get("description"),
+                slug: values.get("slug"),
+                meta_title: values.get("meta_title"),
+                meta_description: values.get("meta_description"),
+                regular_price: values.float("regular_price"),
+                sale_price: values.float("sale_price"),
+                sku: values.get("sku"),
+                stock_quantity: values.int("stock_quantity"),
+                weight: values.float("weight"),
+                stock_tracking: values.bool("stock_tracking"),
+                stock_preorder: values.bool("stock_preorder"),
+                stock_backorder: values.bool("stock_backorder"),
+                discontinued: values.bool("discontinued"),
+                enabled: values.bool("enabled"),
+                position: values.int("position"),
                 ..Default::default()
             };
 
