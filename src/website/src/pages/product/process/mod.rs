@@ -104,8 +104,15 @@ pub async fn delete_product(product: String) -> String {
 
 pub async fn upload_files(files: FileList) {
     let form = Form::new()
-    .text("operations", format!("{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;30amj7a97zfbvi5rqxv2&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",).replace('\'', "\""))
-    .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
+        .text(
+            "operations",
+            format!(
+                "{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;30amj7a97zfbvi5rqxv2&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",
+         
+            )
+            .replace('\'', "\"").replace("&apos;", "\\\""),
+        )
+        .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
     let list = (0..files.length())
         .collect::<Vec<u32>>()
