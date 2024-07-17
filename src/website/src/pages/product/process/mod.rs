@@ -63,7 +63,7 @@ pub async fn create_product(product: ProductInput) -> String {
 pub async fn update_product(id: String, data: ProductInput) {
     let variables = UpdateProductVariables { id, data };
 
-    let token = client::<UpdateProduct>(UpdateProduct::build(variables))
+    client::<UpdateProduct>(UpdateProduct::build(variables))
         .await
         .unwrap()
         .update_product
