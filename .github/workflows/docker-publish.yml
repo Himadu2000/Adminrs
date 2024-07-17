@@ -53,6 +53,9 @@ jobs:
         run: rustup target add wasm32-unknown-unknown
 
       - name: Move
+        run: sudo apt update && sudo apt install podman -y
+
+      - name: Move
         run: cargo install cross
 
       - name: Move
