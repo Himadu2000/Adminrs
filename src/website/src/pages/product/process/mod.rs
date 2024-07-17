@@ -60,8 +60,11 @@ pub async fn create_product(product: ProductInput) -> String {
         .to_owned()
 }
 
-pub async fn update_product(id: String, data: ProductInput) {
-    let variables = UpdateProductVariables { id, data };
+pub async fn update_product(id: String, data: ProductInput) -> String {
+    let variables = UpdateProductVariables {
+        id: id.into(),
+        data,
+    };
 
     client::<UpdateProduct>(UpdateProduct::build(variables))
         .await
