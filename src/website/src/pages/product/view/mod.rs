@@ -74,7 +74,7 @@ pub fn View(
 
             <Upload multiple=true custom_request=move |file_list| {upload.dispatch((file_list,None));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p>
-        {product.unwrap().images.iter().map(|image| view! { <img src=image.file.clone() alt=image.alt.clone()/> }).collect_view()}
+        {product.map(|item| item.images.iter().map(|image| view! { <img src=image.file.clone() alt=image.alt.clone()/> }).collect_view())}
         </UploadDragger>
     </Upload>
                     </div>
