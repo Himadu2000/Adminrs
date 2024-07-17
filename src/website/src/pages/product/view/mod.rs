@@ -34,7 +34,7 @@ pub fn View(
         fallback=move || view! { <p>"Loading..."</p> }
     >
     <For
-                    each=move || data.products.with(|value| <std::option::Option<Vec<std::string::String>> as Clone>::clone(&value).unwrap_or_default())
+                    each=move || data.products.with(|value| value)
                     key=|product| product.clone()
                     children=move |product| {
                         let producta= product.clone();
