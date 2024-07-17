@@ -1,11 +1,5 @@
 use super::query::{MyQuery, ProductRecord};
 use crate::pages::client::{client, upload_client, MutationBuilder, QueryBuilder};
-use js_sys::Uint8Array;
-use leptos::*;
-use log::info;
-use reqwest::multipart::{Form, Part};
-use std::collections::HashMap;
-use thaw::FileList;
 
 pub async fn get_products() -> Vec<ProductRecord> {
     let variables = Variables {
