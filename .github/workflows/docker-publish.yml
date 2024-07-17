@@ -67,12 +67,6 @@ jobs:
         run: cargo leptos build --release -vv --bin-cargo-args="-h"
 
       - name: Move
-        run: ls
-
-      - name: Move
-        run: cd target && ls
-
-      - name: Move
         run: mv target/release/website ./main
 
       - name: Move
