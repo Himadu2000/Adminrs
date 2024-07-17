@@ -4,7 +4,7 @@ mod text;
 use super::data::Data;
 use form::Form;
 use leptonic::toggle::Toggle;
-use leptos::{ev::SubmitEvent, *};
+use leptos::*;
 use leptos_meta::*;
 use std::collections::HashMap;
 use thaw::{FileList, Upload, UploadDragger};
@@ -13,7 +13,7 @@ use thaw::{FileList, Upload, UploadDragger};
 pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
-    create: Action<(), String,
+    _create: Action<(), String>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
     upload: Action<(FileList, Option<u8>), ()>,
     delete: Action<(String, Option<u8>), String>,
@@ -50,7 +50,7 @@ pub fn View(
                                     {productb}
                                 </button>
                                 <button
-                                    on:click=move |_| delete.dispatch(((productc.clone(), None)))
+                                    on:click=move |_| delete.dispatch((productc.clone(), None))
                                     class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white"
                                 >
                                     "Remove"
@@ -66,7 +66,7 @@ pub fn View(
             >
         {move || {
             data.product.get()
-                .map(|product| view! {
+                .map(|_product| view! {
                     <div>
                     <Form values=form_values on_submit=on_submit />
 
