@@ -1,4 +1,4 @@
-FROM rustlang/rust:nightly-alpine
+FROM debian:bookworm-slim
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./main ./main
 COPY ./site ./target/site
 
-RUN apk update && apk add curl
+RUN apt update && apt install curl -y
 
 EXPOSE 3000
 
