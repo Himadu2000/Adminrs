@@ -71,8 +71,8 @@ pub async fn update_product(id: String, data: ProductInput) {
         .id;
 }
 
-pub async fn delete_product(product: &ProductInput) {
-    let variables = DeleteProductVariables { id: String::new() };
+pub async fn delete_product(product: String) -> String {
+    let variables = DeleteProductVariables { id: product.into() };
 
     client::<DeleteProduct>(DeleteProduct::build(variables))
         .await
