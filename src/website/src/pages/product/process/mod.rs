@@ -68,7 +68,9 @@ pub async fn update_product(id: String, data: ProductInput) {
         .unwrap()
         .update_product
         .unwrap()
-        .id;
+        .id
+        .inner()
+        .to_owned()
 }
 
 pub async fn delete_product(product: String) -> String {
