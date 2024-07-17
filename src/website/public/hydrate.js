@@ -7,7 +7,7 @@ function idle(c) {
 }
 idle(() => {
   import("/pkg/website.js").then((mod) => {
-    mod.default("/pkg/_bg.wasm").then(() => {
+    mod.default("/pkg/website.wasm").then(() => {
       for (let e of document.querySelectorAll("leptos-island")) {
         let l = e.dataset.component;
         mod["_island_" + l](e);
