@@ -83,7 +83,11 @@ pub fn Product() -> impl IntoView {
 
     let update_action = create_action(move |_input: &()| async move {
         let data = ProductInput {
-            name: form_values.get().get(&String::from("name")).cloned(),
+            name: form_values
+                .get()
+                .get(&String::from("name"))
+                .unwrap()
+                .to_owned(),
             ..Default::default()
         };
 
