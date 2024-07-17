@@ -96,13 +96,3 @@ bin-features = ["ssr"]
 #
 # Optional. Can be over-ridden with the command line parameter --lib-features
 lib-features = ["hydrate"]
-
-# The target triple to use when compiling the bin target
-#
-# Optional. Env: LEPTOS_BIN_TARGET_TRIPLE
-bin-target-triple = "aarch64-unknown-linux-gnu"
-
-# The command to run instead of "cargo" when building the server
-#
-# Optional. No default. Env: LEPTOS_BIN_CARGO_COMMAND
-bin-cargo-command = "cross"
