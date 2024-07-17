@@ -25,6 +25,7 @@ pub fn App() -> impl IntoView {
     view! {
         <Stylesheet id="leptos" href="/pkg/website.css"/>
         <Link rel="modulepreload" href="/pkg/website.js"/>
+        <Script src="/hydrate.js"></Script>
         <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
         <Router>
             <Routes>
