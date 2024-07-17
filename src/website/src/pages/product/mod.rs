@@ -4,26 +4,13 @@ mod process;
 mod query;
 mod view;
 
-use crate::pages::{
-    client::{client, upload_client, MutationBuilder, QueryBuilder},
-    get_products,
-};
+use crate::pages::get_products;
 use data::Data;
-use js_sys::Uint8Array;
 use leptos::*;
 use leptos_router::{use_params, Params};
 use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
-use log::info;
 use process::{create_product, delete_product, get_product, update_product, upload_files};
-use query::{
-    crud::{
-        CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
-        UpdateProduct, UpdateProductVariables,
-    },
-    input::ProductInput,
-    UnnamedQuery, Variables,
-};
-use reqwest::multipart::{Form, Part};
+use query::input::ProductInput;
 use std::collections::HashMap;
 use thaw::FileList;
 use view::View;
