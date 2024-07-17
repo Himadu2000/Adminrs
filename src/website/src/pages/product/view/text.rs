@@ -15,7 +15,7 @@ pub fn TextInput(
             let value=event_target_value(&ev);
             input.update(|values|{ values.insert(name.to_string(), value); });
         }
-        prop:value=input.get().get(&name.to_owned())
+        prop:value=input.get_untracked().get(&name.to_owned())
         placeholder=placeholder name=name class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-800 border-blue-900 text-white"/>
     }
 }
