@@ -38,7 +38,7 @@ thaw = "0.3.2"
 leptos-use = "0.10.10"
 serde = "1.0.203"
 js-sys = "0.3.69"
-openssl = { version = "0.10", features = ["vendored"] }
+openssl = { version = "0.10", optional = true, features = ["vendored"] }
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
@@ -54,6 +54,7 @@ ssr = [
     "thaw/ssr",
     "leptos-use/ssr",
     "dep:tracing",
+    "dep:openssl",
 ]
 
 [build-dependencies]
