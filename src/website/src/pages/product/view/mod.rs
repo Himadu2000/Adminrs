@@ -13,6 +13,7 @@ use thaw::{FileList, Upload, UploadDragger};
 pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
+    create: Action<(), ()>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
     upload: Action<(FileList, Option<u8>), ()>,
     delete: Action<(String, Option<u8>), String>,
