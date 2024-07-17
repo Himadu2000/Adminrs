@@ -12,6 +12,8 @@ use login::Login;
 use product::Product;
 use products::Products;
 
+pub use products::query::MyQuery;
+
 // Pull in the schema we registered in build.rs
 #[cynic::schema("schema")]
 mod schema {}
