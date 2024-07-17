@@ -115,10 +115,13 @@ pub fn Product() -> impl IntoView {
         },
     );
 
-    let upload = create_action(move |input: &(FileList, Option<u8>)| {
-        let files = input.to_owned().0;
+    let upload = create_action(move |input: &(String, FileList)| {
+        let (id, files) = input.to_owned();
 
-        async move { upload_files(files).await }
+        async move {
+            upload_files(id, files).await;
+            product_response.refetch();
+        }
     });
 
     let _form: NodeRef<html::Form> = create_node_ref();
@@ -137,6 +140,6 @@ pub fn Product() -> impl IntoView {
     };
 
     view! {
-        <View data=data form_values=form_values create=create on_submit=update_action upload=upload delete=delete set_selected_product=set_selected_product set_store_id=set_store_id />
+        <View data=data form_values=form_values create=create on_submit=update_action upload=upload delete=delete selected_product=selected_product set_selected_product=set_selected_product set_store_id=set_store_id />
     }
 }
