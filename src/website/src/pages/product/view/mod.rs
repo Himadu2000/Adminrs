@@ -14,8 +14,9 @@ pub fn View(
     form_values: RwSignal<HashMap<String, String>>,
     create: Action<(), ()>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
-    upload: Action<(FileList, Option<u8>), ()>,
+    upload: Action<(String, FileList), ()>,
     delete: Action<(String, Option<u8>), ()>,
+    selected_product: ReadSignal<String>,
     set_selected_product: WriteSignal<String>,
     set_store_id: WriteSignal<String>,
 ) -> impl IntoView {
@@ -24,10 +25,10 @@ pub fn View(
         <main>
             <div class="bg-gradient-to-tl from-blue-800 to-blue-500 text-white font-mono flex flex-col min-h-screen">
                 <div class="flex flex-row-reverse flex-wrap m-auto">
-                <button on:click=move |_| set_store_id.set(String::from("mx8v8wibis5wewl4eq62")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
+                <button on:click=move |_| set_store_id.set(String::from("rizzyik1zr9nsyeblujk")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
                     "Fondtees.com"
                 </button>
-                <button on:click=move |_| set_store_id.set(String::from("mmzp08vulm6ijkqusk45")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
+                <button on:click=move |_| set_store_id.set(String::from("4h75xs7hl1hep4p6kv4b")) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
                     "Varietydoor.com"
                 </button>
                 <button on:click=move |_| create.dispatch(()) class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white">
@@ -72,7 +73,7 @@ pub fn View(
                     <div>
                     <Form values=form_values on_submit=on_submit />
 
-            <Upload multiple=true custom_request=move |file_list| {upload.dispatch((file_list,None));}>
+            <Upload multiple=true custom_request=move |file_list| {upload.dispatch((selected_product.get_untracked(), file_list));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p>
         {product.map(|item| item.images.iter().map(|image| view! { <img src=image.file.clone() alt=image.alt.clone()/> }).collect_view())}
         </UploadDragger>
