@@ -77,16 +77,12 @@ pub async fn update_product(id: String, data: ProductInput) -> String {
 }
 
 pub async fn delete_product(product: String) -> String {
-    let variables = DeleteProductVariables { id: product.into() };
+    let variables = DeleteProductVariables { id: product.clone().into() };
 
     client::<DeleteProduct>(DeleteProduct::build(variables))
-        .await
-        .unwrap()
-        .delete_product
-        .unwrap()
-        .id
-        .inner()
-        .to_owned()
+        .await;
+
+    product
 }
 
 // let update_action = create_action(move |_input: &()| async move {
