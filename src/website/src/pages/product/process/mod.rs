@@ -45,10 +45,10 @@ pub async fn get_product(
     None
 }
 
-pub async fn create_product(product: &ProductInput) {
+pub async fn create_product(product: ProductInput) -> String {
     let variables = CreateProductVariables { data: product };
 
-    let token = client::<CreateProduct>(CreateProduct::build(variables))
+    client::<CreateProduct>(CreateProduct::build(variables))
         .await
         .unwrap()
         .create_product
@@ -56,7 +56,8 @@ pub async fn create_product(product: &ProductInput) {
         .unwrap()
         .to_owned()
         .id
-        .clone();
+        .inner()
+        .to_owned()
 }
 
 pub async fn update_product(id: String, data: ProductInput) {
