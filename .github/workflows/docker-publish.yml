@@ -51,7 +51,7 @@ jobs:
         with:
           command: build
           target: aarch64-unknown-linux-gnu
-          args: "--package=website --bin=website --no-default-features --features=ssr -r"
+          args: "--package=website --bin=website --no-default-features --features=ssr -r --verbose"
           strip: true
 
       - name: Move
