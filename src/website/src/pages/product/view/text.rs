@@ -1,12 +1,5 @@
-use super::data::Data;
-use leptonic::toggle::Toggle;
-use leptos::{
-    ev::{MouseEvent, SubmitEvent},
-    *,
-};
-use leptos_meta::*;
+use leptos::*;
 use std::collections::HashMap;
-use thaw::{FileList, Upload, UploadDragger};
 
 #[component]
 pub fn TextInput(
