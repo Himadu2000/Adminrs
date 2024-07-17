@@ -12,10 +12,10 @@ use thaw::{FileList, Upload, UploadDragger};
 pub fn View(
     data: Data,
     form_values: RwSignal<HashMap<String, String>>,
-    create: Action<(), String>,
+    create: Action<(), ()>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
     upload: Action<(FileList, Option<u8>), ()>,
-    delete: Action<(String, Option<u8>), String>,
+    delete: Action<(String, Option<u8>), ()>,
     set_selected_product: WriteSignal<String>,
     set_store_id: WriteSignal<String>,
 ) -> impl IntoView {
@@ -68,12 +68,14 @@ pub fn View(
             >
         {move || {
             data.product.get()
-                .map(|_product| view! {
+                .map(|product| view! {
                     <div>
                     <Form values=form_values on_submit=on_submit />
 
             <Upload multiple=true custom_request=move |file_list| {upload.dispatch((file_list,None));}>
-        <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p></UploadDragger>
+        <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p>
+        {product.unwrap().images.iter().map(|image| view! { <img src=image.file.clone() alt=image.alt.clone()/> }).collect_view()}
+        </UploadDragger>
     </Upload>
                     </div>
                  })
