@@ -97,39 +97,7 @@ pub fn Product() -> impl IntoView {
     let upload = create_action(move |input: &(FileList, Option<u8>)| {
         let files = input.to_owned().0;
 
-        async move {
-            let form = Form::new()
-            .text("operations", "{ 'query': 'mutation ($file: Upload!) { upload(file: $file) }', 'variables': { 'file': null }}".replace('\'', "\""))
-            .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
-
-            let list = (0..files.length())
-                .collect::<Vec<u32>>()
-                .iter()
-                .map(|index| {
-                    let file = files.item(*index).expect("File");
-
-                    let mut bytes = Vec::new();
-                    Uint8Array::new(&file).copy_to(&mut bytes);
-
-                    let file_name = file.name();
-                    let mime = file_name.split('.').last().unwrap_or_default();
-                    let mime = format!("image/{}", mime);
-
-                    let part = Part::bytes(bytes)
-                        .file_name(file_name)
-                        .mime_str(&mime)
-                        .expect("Part");
-
-                    (index.to_string(), part)
-                })
-                .fold(form, |accumulator, (index, part)| {
-                    accumulator.part(index, part)
-                });
-
-            let res = upload_client(list).await;
-
-            info!("{:?}", res);
-        }
+        async move { upload_files(files).await }
     });
 
     let _form: NodeRef<html::Form> = create_node_ref();
