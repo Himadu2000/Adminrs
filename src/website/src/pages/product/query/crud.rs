@@ -42,9 +42,9 @@ pub struct DeleteProductVariables {
 
 // Delete Images
 #[derive(QueryVariables, Debug)]
-pub struct UnnamedQueryVariables<'a> {
+pub struct UnnamedQueryVariables {
     pub delete_image_index: Option<i32>,
-    pub id: Option<&'a str>,
+    pub id: Id,
 }
 
 #[derive(QueryFragment, Debug)]
