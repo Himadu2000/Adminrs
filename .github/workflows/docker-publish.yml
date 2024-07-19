@@ -72,6 +72,12 @@ jobs:
       - name: Move
         run: mv target/site ./site
 
+      - name: Move
+        run: cd ./site && ls
+
+      - name: Move
+        run: cd ./error && ls
+
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
