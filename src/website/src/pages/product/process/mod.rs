@@ -103,7 +103,7 @@ pub async fn delete_product(product: String) -> String {
     product
 }
 
-pub async fn update_image(id: String) -> String {
+pub async fn update_images(id: String) -> String {
     let variables = UnnamedQueryVariables {
         id: id.into(),
         delete_image_index: Some(0),
