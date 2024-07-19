@@ -13,6 +13,7 @@ use log::info;
 use reqwest::multipart::{Form, Part};
 use std::collections::HashMap;
 use thaw::FileList;
+use wasm_bindgen_futures::JsFuture;
 
 pub async fn get_product(
     selected_product: String,
@@ -116,8 +117,8 @@ pub async fn upload_files(product: String,files: FileList) {
         .map(|index| {
             let file = files.item(*index).expect("File");
 
-            let mut bytes = Vec::new();
-            Uint8Array::new(&file).copy_to(&mut bytes);
+            let array = JsFuture::from(promise).await.unwrap();
+            let bytes = Uint8Array::new(&array).to_vec();
 
             let file_name = file.name();
             let mime = file_name.split('.').last().unwrap_or_default();
