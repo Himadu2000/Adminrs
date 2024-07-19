@@ -117,7 +117,7 @@ pub async fn upload_files(product: String,files: FileList) {
         .map(|index| {
             let file = files.item(*index).expect("File");
 
-            let array = JsFuture::from(promise).await.unwrap();
+            let array = JsFuture::from(file.array_buffer()).await.unwrap();
             let bytes = Uint8Array::new(&array).to_vec();
 
             let file_name = file.name();
