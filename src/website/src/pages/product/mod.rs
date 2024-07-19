@@ -60,7 +60,10 @@ pub fn Product() -> impl IntoView {
     let update_images = create_action(move |input: &(String, i32)| {
         let (id, _) = input.to_owned();
 
-        async move { update_images(id).await }
+        async move {
+            update_images(id).await;
+            product_response.refetch();
+        }
     });
 
     let delete = create_action(move |product: &(String, Option<u8>)| {
