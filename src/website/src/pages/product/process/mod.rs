@@ -133,14 +133,12 @@ pub async fn update_images(id: String) -> String {
 // });
 
 pub async fn upload_files(product: String, files: FileList) {
-    let query ="{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;srqpnitqoh7oywvwwulm&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}";
+    let query = format!("{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;{product}&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}");
 
     let form = Form::new()
         .text(
             "operations",
-            String::from(query)
-                .replace('\'', "\"")
-                .replace("&apos;", "\\\""),
+            query.replace('\'', "\"").replace("&apos;", "\\\""),
         )
         .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
