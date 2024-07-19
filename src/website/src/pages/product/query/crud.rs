@@ -40,6 +40,20 @@ pub struct DeleteProductVariables {
     pub id: Id,
 }
 
+// Delete Images
+#[derive(QueryVariables, Debug)]
+pub struct UnnamedQueryVariables<'a> {
+    pub delete_image_index: Option<i32>,
+    pub id: Option<&'a str>,
+}
+
+#[derive(QueryFragment, Debug)]
+#[cynic(graphql_type = "Mutation", variables = "UnnamedQueryVariables")]
+pub struct UnnamedQuery {
+    #[arguments(id: $id, data: {  }, deleteImageIndex: $delete_image_index)]
+    pub update_product: Option<ProductRecord>,
+}
+
 #[derive(QueryFragment, Debug)]
 #[cynic(graphql_type = "Mutation", variables = "DeleteProductVariables")]
 pub struct DeleteProduct {
