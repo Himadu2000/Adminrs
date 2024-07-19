@@ -1,7 +1,7 @@
 use super::query::{
     crud::{
-        CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables,
-        UpdateProduct, UpdateProductVariables,
+        CreateProduct, CreateProductVariables, DeleteProduct, DeleteProductVariables, ImageQuery,
+        UnnamedQueryVariables, UpdateProduct, UpdateProductVariables,
     },
     input::ProductInput,
     ProductRecord, UnnamedQuery, Variables,
@@ -101,6 +101,22 @@ pub async fn delete_product(product: String) -> String {
     client::<DeleteProduct>(DeleteProduct::build(variables)).await;
 
     product
+}
+
+pub async fn update_image(id: String) -> String {
+    let variables = UnnamedQueryVariables {
+        id: id.into(),
+        delete_image_index: Some(0),
+    };
+
+    client::<ImageQuery>(ImageQuery::build(variables))
+        .await
+        .unwrap()
+        .update_product
+        .unwrap()
+        .id
+        .inner()
+        .to_owned()
 }
 
 // let update_action = create_action(move |_input: &()| async move {
