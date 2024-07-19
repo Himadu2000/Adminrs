@@ -39,12 +39,21 @@ pub async fn get_product(
             );
             values.insert(String::from("description"), data_product.description);
 
-            values.insert(String::from("regular_price"), data_product.regular_price);
-            values.insert(String::from("sale_price"), data_product.sale_price);
+            values.insert(
+                String::from("regular_price"),
+                data_product.regular_price.to_string(),
+            );
+            values.insert(
+                String::from("sale_price"),
+                data_product.sale_price.to_string(),
+            );
             values.insert(String::from("sku"), data_product.sku);
-            values.insert(String::from("stock_quantity"), data_product.stock_quantity);
-            values.insert(String::from("weight"), data_product.weight);
-            values.insert(String::from("position"), data_product.position);
+            values.insert(
+                String::from("stock_quantity"),
+                data_product.stock_quantity.to_string(),
+            );
+            values.insert(String::from("weight"), data_product.weight.to_string());
+            values.insert(String::from("position"), data_product.position.to_string());
         });
 
         return Some(with_product);
