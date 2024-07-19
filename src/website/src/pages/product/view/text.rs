@@ -10,7 +10,7 @@ pub fn TextInput(
     // class: &'static str,
 ) -> impl IntoView {
     view! {
-        <input type="text"
+        <input type=input_type
         on:input=move |ev| {
             let value=event_target_value(&ev);
             input.update(|values|{ values.insert(name.to_string(), value); });
