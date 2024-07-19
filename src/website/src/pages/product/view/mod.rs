@@ -75,6 +75,13 @@ pub fn View(
                     <div>
                     <Form values=form_values on_submit=on_submit />
 
+                    <button
+                    on:click=move |_| update_images.dispatch((selected_product.get_untracked(), 0))
+                    class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white"
+                >
+                    "Delete Images"
+                </button>
+
             <Upload multiple=true custom_request=move |file_list| {upload.dispatch((selected_product.get_untracked(), file_list));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p>
         {product.map(|item| item.images.iter().map(|image| view! { <img src=format!("{}{}", URL.replacen("/graphql", "", 1), image.file.clone()) alt=image.alt.clone()/> }).collect_view())}
