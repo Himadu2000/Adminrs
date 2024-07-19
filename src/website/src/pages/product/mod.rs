@@ -9,7 +9,9 @@ use data::Data;
 use leptos::*;
 use leptos_router::{use_params, Params};
 use leptos_use::{storage::use_local_storage, utils::FromToStringCodec};
-use process::{create_product, delete_product, get_product, update_product, upload_files};
+use process::{
+    create_product, delete_product, get_product, update_images, update_product, upload_files,
+};
 use query::input::ProductInput;
 use std::collections::HashMap;
 use thaw::FileList;
@@ -53,6 +55,12 @@ pub fn Product() -> impl IntoView {
         let (id, data) = input.to_owned();
 
         async move { update_product(id, data).await }
+    });
+
+    let update_images = create_action(move |input: &(String, i32)| {
+        let (id, _) = input.to_owned();
+
+        async move { update_images(id).await }
     });
 
     let delete = create_action(move |product: &(String, Option<u8>)| {
