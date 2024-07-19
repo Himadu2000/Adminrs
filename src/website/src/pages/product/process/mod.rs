@@ -102,6 +102,7 @@ pub async fn delete_product(product: String) -> String {
 
 pub async fn upload_files(product: String, files: FileList) {
     let query ="{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;srqpnitqoh7oywvwwulm&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}";
+
     let form = Form::new()
         .text(
             "operations",
