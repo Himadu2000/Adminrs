@@ -15,6 +15,7 @@ pub fn View(
     form_values: RwSignal<HashMap<String, String>>,
     create: Action<(), ()>,
     on_submit: Action<(RwSignal<HashMap<String, String>>, Option<u8>), ()>,
+    update_images: Action<(String, i32), String>,
     upload: Action<(String, FileList), ()>,
     delete: Action<(String, Option<u8>), ()>,
     selected_product: ReadSignal<String>,
