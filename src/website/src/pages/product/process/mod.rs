@@ -78,10 +78,11 @@ pub async fn update_product(id: String, data: ProductInput) -> String {
 }
 
 pub async fn delete_product(product: String) -> String {
-    let variables = DeleteProductVariables { id: product.clone().into() };
+    let variables = DeleteProductVariables {
+        id: product.clone().into(),
+    };
 
-    client::<DeleteProduct>(DeleteProduct::build(variables))
-        .await;
+    client::<DeleteProduct>(DeleteProduct::build(variables)).await;
 
     product
 }
@@ -99,41 +100,40 @@ pub async fn delete_product(product: String) -> String {
 //     update.dispatch((selected_product.get_untracked(), data));
 // });
 
-pub async fn upload_files(product: String,files: FileList) {
+pub async fn upload_files(product: String, files: FileList) {
+    let query ="{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;srqpnitqoh7oywvwwulm&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}";
     let form = Form::new()
         .text(
             "operations",
-            format!(
-                "{{ 'query': 'mutation($file: [Upload!]) {{ updateProduct(id: &apos;{product}&apos;, data: {{}}, images: $file) {{ id images {{ file alt }} }} }}', 'variables': {{ 'file': null }}}}",
-         
-            )
-            .replace('\'', "\"").replace("&apos;", "\\\""),
+            String::from(query)
+                .replace('\'', "\"")
+                .replace("&apos;", "\\\""),
         )
         .text("map", "{ '0': ['variables.file'] }".replace('\'', "\""));
 
-    let list = (0..files.length())
-        .collect::<Vec<u32>>()
-        .iter()
-        .map(|index| {
-            let file = files.item(*index).expect("File");
+    let mut items: Vec<(String, Part)> = Vec::new();
 
-            let array = JsFuture::from(file.array_buffer()).await.unwrap();
-            let bytes = Uint8Array::new(&array).to_vec();
+    for index in 0..files.length() {
+        let file = files.item(index).expect("File");
 
-            let file_name = file.name();
-            let mime = file_name.split('.').last().unwrap_or_default();
-            let mime = format!("image/{}", mime);
+        let array = JsFuture::from(file.array_buffer()).await.unwrap();
+        let bytes = Uint8Array::new(&array).to_vec();
 
-            let part = Part::bytes(bytes)
-                .file_name(file_name)
-                .mime_str(&mime)
-                .expect("Part");
+        let file_name = file.name();
+        let mime = file_name.split('.').last().unwrap_or_default();
+        let mime = format!("image/{}", mime);
 
-            (index.to_string(), part)
-        })
-        .fold(form, |accumulator, (index, part)| {
-            accumulator.part(index, part)
-        });
+        let part = Part::bytes(bytes)
+            .file_name(file_name)
+            .mime_str(&mime)
+            .expect("Part");
+
+        items.push((index.to_string(), part));
+    }
+
+    let list = items.into_iter().fold(form, |accumulator, (index, part)| {
+        accumulator.part(index, part)
+    });
 
     let res = upload_client(list).await;
 
