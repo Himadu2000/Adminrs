@@ -2,6 +2,7 @@ mod form;
 mod text;
 
 use super::data::Data;
+use crate::pages::client::URL;
 use form::Form;
 use leptos::*;
 use leptos_meta::*;
@@ -75,7 +76,7 @@ pub fn View(
 
             <Upload multiple=true custom_request=move |file_list| {upload.dispatch((selected_product.get_untracked(), file_list));}>
         <UploadDragger><p class="text-black">"Click or drag a file to this area to upload"</p>
-        {product.map(|item| item.images.iter().map(|image| view! { <img src=format!("http://localhost:8000{}",image.file.clone()) alt=image.alt.clone()/> }).collect_view())}
+        {product.map(|item| item.images.iter().map(|image| view! { <img src=format!("{}{}", URL.replacen("/graphql", "", 1), image.file.clone()) alt=image.alt.clone()/> }).collect_view())}
         </UploadDragger>
     </Upload>
                     </div>
